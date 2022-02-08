@@ -1,3 +1,13 @@
+# To setup and run project
+1. `git clone https://github.com/elaine1129/AWAD_Assignment.git` clone from repository
+2.  cd into project directory
+3. `composer install` install dependency 
+4. Setup .env files, by copying the .env.example and setup database (password, ...)
+5. `php artisan key:generate`
+6. `php artisan serve` 
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
