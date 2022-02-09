@@ -1,0 +1,11 @@
+/*@tailwind base;*/
+@tailwind components;
+@tailwind utilities;
+
+@import "bootstrap";
+@import '~datatables.net-bs4/css/dataTables.bootstrap4.css';
+
+@import '~@fortawesome/fontawesome-free/css/regular.css';
+@import '~@fortawesome/fontawesome-free/css/brands.css';
+@import '~@fortawesome/fontawesome-free/css/solid.css';
+@import '~@fortawesome/fontawesome-free/css/fontawesome.css';

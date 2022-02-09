@@ -1,3 +1,8 @@
+require('bootstrap');
+require('datatables.net-bs4');
+window.Popper = require('popper.js').default;
+window.$ = window.jQuery = require('jquery');
+
 window._ = require('lodash');
 
 /**

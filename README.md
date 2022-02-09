@@ -4,6 +4,9 @@
 3. `composer install` install dependency 
 4. Setup .env files, by copying the .env.example and setup database (password, ...)
 5. `php artisan key:generate`
+7. `npm -g install pnpm` install pnpm as global if havent install before
+1. `pnpm install` install all dependency
+1. `pnpm run watch`
 6. `php artisan serve` 
 
 ---
