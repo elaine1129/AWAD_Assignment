@@ -1,14 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{config('clinic.app-name')}}</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
+@extends('layouts.main-layout')
+@section('body')
 <div class="tw-flex tw-items-center tw-justify-center tw-flex-row tw-min-h-screen tw-text-lg">
     <div class="card text-white bg-primary">
         <div class="tw-text-lg tw-text-gray-600">Test Tailwind</div>
@@ -536,10 +527,11 @@
 </table>
 </div>
 </body>
-<script src="{{asset('js/app.js')}}"></script>
+@endsection
+@section('script')
 <script>
     $(document).ready(function() {
         $('#example').DataTable();
     } );
 </script>
-</html>
+@stop
