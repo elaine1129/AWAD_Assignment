@@ -1,4 +1,7 @@
 module.exports = {
+    corePlugins: {
+        preflight: false,
+    },
     prefix: 'tw-',
     content: [
         "./resources/**/*.blade.php",
@@ -6,10 +9,23 @@ module.exports = {
         "./resources/**/*.vue",
     ],
     theme: {
+        fontFamily: {
+            Poppins: ["Poppins, sans-serif"],
+            Lato: ["Lato", "sans-serif"],
+            primary: ["Lato", "sans-serif"],
+            Montserrat: ["Montserrat", "sans-serif"],
+            Rubik: ["Rubik", "sans-serif"],
+        },
+        flex: {
+            "1": "1 1 0%",
+            "2": "2 2 0%",
+        },
         extend: {
-            color: {
+            colors: {
                 'primary': '#4A9AF8',
                 'at-primary': '#90D2F7',
+                'light-purple': '#eff0fb',
+                'primary-blue': '#336cfb',
             },
             keyframes: {
                 'fade-in-down': {

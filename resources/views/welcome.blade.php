@@ -1,22 +1,29 @@
 @extends('layouts.main-layout')
 @section('body')
-<div class="tw-flex tw-items-center tw-justify-center tw-flex-row tw-min-h-screen tw-text-lg">
+<div class="tw-flex tw-items-center tw-justify-center tw-flex-row tw-min-h-screen tw-text-lg tw-gap-x-5">
     <div class="card text-white bg-primary">
-        <div class="tw-text-lg tw-text-gray-600">Test Tailwind</div>
-
+        <div class="tw-text-lg tw-text-primary tw-font-primary">Test Tailwind & Primary color</div>
+        <div class="tw-text-lg tw-text-at-primary">Alt color</div>
+        <div class="tw-text-lg tw-font-Lato tw-font-primary">Test font lato (Primary font)</div>
+        <div class="tw-text-lg tw-font-Poppins">Test font Poppins</div>
+        <div class="tw-text-lg tw-font-Rubik">Test font Rubik</div>
+        <div class="tw-text-lg tw-font-Montserrat">Test font Montserrat</div>
         <img class="card-img-top" src="https://sdfsdf.dev/300x300.png" alt="">
         <div class="card-body">
             <h4 class="card-title">Test bootstrap</h4>
             <p class="card-text"></p>
             <i class="fa fa-upload"></i> test icon
+
         </div>
     </div>
 
+    Iconify icons <a href="https://icones.netlify.app/">Can use all icons from here</a>
+    <span class="iconify-inline" data-icon="fa-solid:home"></span>
 </div>
 {{--test modal--}}
 <div class="tw-flex tw-items-center tw-justify-center">
     <button data-toggle="modal"
-            data-target="#modal-test" type="button" class="btn btn-primary tw-bg-primary">Open</button>
+            data-target="#modal-test" type="button" class="btn btn-primary">Open</button>
 
     <button onclick="$('#modal-test').modal('show')" type="button" class="btn btn-primary">Open</button>
 </div>
