@@ -14,12 +14,31 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $role = $this->faker->randomElement(['ADMIN', 'PATIENT', 'DOCTOR']);
+        $userData = [
+            'name' => $this->faker->name(),
+            'ic' => $this->faker->regexify('(([[0-9]{2})(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01]))-([0-9]{2})-([0-9]{4})'),
+            'email' => $this->faker->email(),
+        ];
+        switch ($role) {
+            case 'ADMIN':
+                break;
+            case 'PATIENT':
+                array_push($userData, ["phone" => $this->faker->phoneNumber]);
+                break;
+            case 'DOCTOR':
+                array_push($userData, ["expertise" => 'expertise']);
+                break;
+        }
+
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'role' => $role,
+            'data' => $userData,
         ];
     }
 
