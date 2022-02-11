@@ -9,6 +9,12 @@
 1. `pnpm run watch`
 6. `php artisan serve` 
 
+## To seed database
+1. set up database in `.env` file
+1. run `php artisan migrate` / `php artisan migrate:fresh`
+1. run `php artisan db:seed` (if fail run again) 
+1. to configure number of seed go to `DatabaseSeeder.php`.
+
 ---
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
