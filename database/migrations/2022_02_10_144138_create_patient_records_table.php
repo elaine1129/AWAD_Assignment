@@ -17,6 +17,7 @@ class CreatePatientRecordsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignIdFor(\App\Models\User::class, 'doctor_id');
+            $table->foreignIdFor(\App\Models\User::class, 'patient_id');
             $table->longText('symptoms');
             $table->longText('diagnosis');
             $table->longText('prescription');

@@ -16,13 +16,15 @@ class ScheduleFactory extends Factory
     public function definition()
     {
         $doctorIds = User::query()->where('role', 'DOCTOR')->pluck('id')->toArray();
-        $date = $this->faker->dateTimeBetween('+1 days', '+2 years');
+        $date = $this->faker->dateTimeBetween('+1 days', '+1 weeks');
         while(true){
             $doctorId = $this->faker->randomElement($doctorIds);
             $scheduledDate = Schedule::query()->where('doctor_id',$doctorId)->pluck('date')->toArray();
+
+            // prevent schedule with same date on a doctor being created
             if(!in_array($date, $scheduledDate))
                 break;
-            $date = $this->faker->dateTimeBetween('+1 days', '+2 years');
+            $date = $this->faker->dateTimeBetween('+1 days', '+2 weeks');
         }
         return [
             'date'=>$date,

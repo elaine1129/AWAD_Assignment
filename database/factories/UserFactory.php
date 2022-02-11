@@ -24,10 +24,11 @@ class UserFactory extends Factory
             case 'ADMIN':
                 break;
             case 'PATIENT':
-                array_push($userData, ["phone" => $this->faker->phoneNumber]);
+                $userData["phone"] = $this->faker->phoneNumber;
                 break;
             case 'DOCTOR':
-                array_push($userData, ["expertise" => 'expertise']);
+                $userData["expertise"] = 'expertise';
+                $userData["image_url"]=$this->faker->imageUrl();
                 break;
         }
 

@@ -95,7 +95,7 @@ class User extends Authenticatable
         return null;
     }
 
-    public function patient_record()
+    public function patient_records()
     {
 //        if($this->isDoctor())
 //            return $this->hasMany(PatientRecord::class, 'doctor_id', 'id');
@@ -115,12 +115,20 @@ class User extends Authenticatable
         return $this->doctorAndPatient(Appointment::class);
     }
 
+    // return all schedule that are not yet full
     public function availableSchedule()
     {
         if($this->isDoctor()){
-            return $this->schedules()->get()->filter(function ($schedule){
-                return $schedule->isStillAvailable() || true;
+            return $this->schedules->filter(function ($sc){
+                return $sc->available;
             });
+//            $schedules = $this->schedules;
+//            $data = [];
+//            foreach ($schedules as $i=>$schedule){
+//                if($schedule->available)
+//                    $data[$i] = $schedule;
+//            }
+//            return $data;
         }
     }
 
