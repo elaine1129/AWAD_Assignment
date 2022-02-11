@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/main/patient', function () {
+Route::get('/patient/main', function () {
     return view('patient-main');
+});
+
+Route::get('/admin/appointment', function () {
+    return view('admin-appointment');
 });
