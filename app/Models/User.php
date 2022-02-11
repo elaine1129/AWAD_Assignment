@@ -105,7 +105,7 @@ class User extends Authenticatable
         return $this->doctorAndPatient(PatientRecord::class);
     }
 
-    public function appointment()
+    public function appointments()
     {
 //        if($this->isDoctor())
 //            return $this->hasMany(Appointment::class, 'doctor_id', 'id');
@@ -116,7 +116,7 @@ class User extends Authenticatable
     }
 
     // return all schedule that are not yet full
-    public function availableSchedule()
+    public function schedulesAvailable()
     {
         if($this->isDoctor()){
             return $this->schedules->filter(function ($sc){

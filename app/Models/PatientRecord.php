@@ -18,4 +18,9 @@ class PatientRecord extends Model
     {
         return $this->belongsTo(User::class, 'doctor_id', 'id');
     }
+
+    public function appointment()
+    {
+        return $this->belongsTo(Appointment::class, 'appointment_id','id');
+    }
 }
