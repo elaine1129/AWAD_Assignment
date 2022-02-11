@@ -49,9 +49,9 @@ class User extends Authenticatable
         'data' => 'array'
     ];
 
-//    public function setDataAttribute(array $value){
-//        $this->attributes['data']=json_encode($value);
-//    }
+    public function setDataAttribute(array $value){
+        $this->attributes['data']=json_encode($value);
+    }
 
     // permission implementation v1 START
     public function permissions()
