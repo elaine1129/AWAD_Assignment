@@ -18,8 +18,8 @@
   --white: #fff;
   --gray: #6c757d;
   --gray-dark: #343a40;
-  --primary: #007bff;
-  --secondary: #6c757d;
+  --primary: #4a9af8;
+  --secondary: #90d2f7;
   --success: #28a745;
   --info: #17a2b8;
   --warning: #ffc107;
@@ -9589,7 +9589,7 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #007bff !important;
+  color: var(--primary) !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
@@ -9597,7 +9597,7 @@ a.text-primary:hover, a.text-primary:focus {
 }
 
 .text-secondary {
-  color: #6c757d !important;
+  color: var(--secondary) !important;
 }
 
 a.text-secondary:hover, a.text-secondary:focus {
@@ -17025,10 +17025,6 @@ readers do not read off random characters that represent icons */
 }
 .tw-justify-center{
     justify-content: center
-}
-.tw-bg-white{
-    --tw-bg-opacity: 1;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity))
 }
 .tw-text-lg{
     font-size: 1.125rem;
