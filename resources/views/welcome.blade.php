@@ -1,4 +1,5 @@
 @extends('layouts.main-layout')
+
 @section('body')
 <div class="tw-flex tw-items-center tw-justify-center tw-flex-row tw-min-h-screen tw-text-lg tw-gap-x-5">
     <div class="card text-white bg-primary">

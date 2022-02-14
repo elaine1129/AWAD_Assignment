@@ -88,6 +88,11 @@ class User extends Authenticatable
         return $this->role === self::PATIENT;
     }
 
+    public function isAdmin()
+    {
+        return $this->role === self::ADMIN;
+    }
+
     public function schedules()
     {
         if ($this->isDoctor())
@@ -105,6 +110,13 @@ class User extends Authenticatable
         return $this->doctorAndPatient(PatientRecord::class);
     }
 
+    public function viewAppointments()
+    {
+        if($this->isAdmin())
+            return $this->appointments();
+        return $this->appointments->all();
+    }
+
     public function appointments()
     {
 //        if($this->isDoctor())
@@ -112,6 +124,8 @@ class User extends Authenticatable
 //        if($this->isPatient())
 //            return $this->hasMany(Appointment::class, 'patient_id', 'id');
 //        return null;
+        if($this->isAdmin())
+            return Appointment::all();
         return $this->doctorAndPatient(Appointment::class);
     }
 

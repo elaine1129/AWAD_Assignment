@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::prefix('/test')->group(function (){
+//    Route::get('/', [\App\Http\Controllers\AppointmentController::class, 'index']);
+    Route::get('/show/{patient_record}', [\App\Http\Controllers\PatientRecordController::class, 'show']);
+    Route::get('/pr/{patient_id}', [\App\Http\Controllers\PatientRecordController::class, 'index']);
+});
+
