@@ -24,3 +24,6 @@ Route::prefix('/test')->group(function (){
     Route::get('/pr/{patient_id}', [\App\Http\Controllers\PatientRecordController::class, 'index']);
 });
 
+Route::get('/main/patient', function () {
+    return view('patient-main');
+});
