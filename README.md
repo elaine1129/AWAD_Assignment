@@ -7,7 +7,11 @@
 7. `npm -g install pnpm` install pnpm as global if havent install before
 1. `pnpm install` install all dependency
 1. `pnpm run watch`
-6. `php artisan serve` 
+6. `php artisan serve`
+1. `php artisan storage:link`
+
+## Run from time to time 
+1. `composer dumpauto`
 
 ## To seed database
 1. set up database in `.env` file

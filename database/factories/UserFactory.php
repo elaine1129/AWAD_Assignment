@@ -25,6 +25,8 @@ class UserFactory extends Factory
                 break;
             case 'PATIENT':
                 $userData["phone"] = $this->faker->phoneNumber;
+                $userData["gender"] = $this->faker->randomElement(['male','female']);
+                $userData["address"] = $this->faker->address;
                 break;
             case 'DOCTOR':
                 $userData["expertise"] = 'expertise';

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use \Illuminate\Support\Facades\Gate;
 
 class RegisterDoctorRequest extends RegisterRequest
 {
@@ -13,8 +14,7 @@ class RegisterDoctorRequest extends RegisterRequest
      */
     public function authorize()
     {
-        // #TODO implement admin only can make? using gate/policy
-        return true;
+        return Gate::check('admin-access');
     }
 
     /**
@@ -24,9 +24,10 @@ class RegisterDoctorRequest extends RegisterRequest
      */
     public function rules()
     {
-        return [
-            'expertise'=>'string|required',
-            'image'=>'nullable|image',
+        $rules = [
+            'expertise' => 'string|nullable',
+            'image' => 'nullable|image',
         ];
+        return array_merge(parent::rules(), $rules);
     }
 }

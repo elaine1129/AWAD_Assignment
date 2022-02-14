@@ -1,5 +1,5 @@
 <?php
 return [
     'app-name' => 'Clinic Management System',
-    'img_path'=>'images/',
+    'img_path'=>'public/images/',
 ];

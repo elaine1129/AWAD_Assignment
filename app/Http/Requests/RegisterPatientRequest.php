@@ -24,13 +24,17 @@ class RegisterPatientRequest extends RegisterRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'password' => [
                 'required',
                 'confirmed',
-                Password::min(8)->mixedCase()->numbers()
+                Password::min(8)
+//                Password::min(8)->mixedCase()->numbers()
             ],
-            'phone'=>'required|regex:^(\+?6?01)[0-46-9]-*[0-9]{7,8}$',
+            'phone' => 'required|regex:/^(\+?6?01)[0-46-9]-*[0-9]{7,8}$/u',
+            'gender' => 'required|in:men,women',
+            'address' => 'nullable'
         ];
+        return array_merge(parent::rules(), $rules);
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use function Symfony\Component\Translation\t;
 
 class User extends Authenticatable
 {
@@ -98,6 +99,11 @@ class User extends Authenticatable
         if ($this->isDoctor())
             return $this->hasMany(Schedule::class, 'doctor_id', 'id');
         return null;
+    }
+
+    public function get_image_url()
+    {
+        return '/storage'.$this->data['image_url'];
     }
 
     public function patient_records()
