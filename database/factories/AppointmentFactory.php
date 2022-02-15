@@ -26,7 +26,7 @@ class AppointmentFactory extends Factory
             $doctorId = $this->faker->randomElement($doctorIds);
             $patientId = $this->faker->randomElement($patientIds);
             $doctor = User::find($doctorId);
-            $schedules = $doctor->availableSchedule();
+            $schedules = $doctor->schedulesAvailable();
 //        $scheduleId = $this->faker->randomElement(Schedule::query()->where('doctor_id', '=',$doctorId)->pluck('id')->toArray());
             $scheduleId = $this->faker->randomElement(Arr::pluck($schedules->toArray(), 'id'));
             $schedule = Schedule::find($scheduleId);
