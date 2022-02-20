@@ -11,7 +11,7 @@
         <div class="h5 d-flex flex-column font-weight-bold m-3">
             <form method="post">
                 <label> Doctor: </label>
-                <p class="display-4"> Dr. Ulrike Herx </p>
+                <p class="display-4"> Dr. Ulrike Herx {{-- Doctor name --}}</p>
                 <label> Reason for visit: </label><br>
                 <input type="text" name="reason"><br><br>
                 <label> Name: </label><br>
@@ -20,6 +20,8 @@
                 <input type="text" name="phoneNum"><br><br>
                 <label>Date: </label> <br>
                 <input type="text" id="datepicker"><br><br>
+                <label>Time: </label> <br>
+                <input type="text" name="time"><br><br>
                 <a href="#" class="btn btn-primary">Create appointment</a>
             </form>
         </div>
