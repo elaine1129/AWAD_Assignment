@@ -50,6 +50,21 @@ class User extends Authenticatable
         'data' => 'array'
     ];
 
+    public function getUser()
+    {
+        switch ($this->role) {
+            case self::ADMIN:
+                return Admin::find($this->id);
+                break;
+            case self::DOCTOR:
+                return Doctor::find($this->id);
+                break;
+            case self::PATIENT:
+                return Patient::find($this->id);
+                break;
+        }
+    }
+
     public function setDataAttribute(array $value){
         $this->attributes['data']=json_encode($value);
     }
@@ -94,18 +109,6 @@ class User extends Authenticatable
         return $this->role === self::ADMIN;
     }
 
-    public function schedules()
-    {
-        if ($this->isDoctor())
-            return $this->hasMany(Schedule::class, 'doctor_id', 'id');
-        return null;
-    }
-
-    public function get_image_url()
-    {
-        return '/storage'.$this->data['image_url'];
-    }
-
     public function patient_records()
     {
 //        if($this->isDoctor())
@@ -116,43 +119,7 @@ class User extends Authenticatable
         return $this->doctorAndPatient(PatientRecord::class);
     }
 
-    public function viewAppointments()
-    {
-        if($this->isAdmin())
-            return $this->appointments();
-        return $this->appointments->all();
-    }
-
-    public function appointments()
-    {
-//        if($this->isDoctor())
-//            return $this->hasMany(Appointment::class, 'doctor_id', 'id');
-//        if($this->isPatient())
-//            return $this->hasMany(Appointment::class, 'patient_id', 'id');
-//        return null;
-        if($this->isAdmin())
-            return Appointment::all();
-        return $this->doctorAndPatient(Appointment::class);
-    }
-
-    // return all schedule that are not yet full
-    public function schedulesAvailable()
-    {
-        if($this->isDoctor()){
-            return $this->schedules->filter(function ($sc){
-                return $sc->available;
-            });
-//            $schedules = $this->schedules;
-//            $data = [];
-//            foreach ($schedules as $i=>$schedule){
-//                if($schedule->available)
-//                    $data[$i] = $schedule;
-//            }
-//            return $data;
-        }
-    }
-
-    private function doctorAndPatient($modelToBeLink){
+    protected function doctorAndPatient($modelToBeLink){
         if($this->isDoctor())
             return $this->hasMany($modelToBeLink, 'doctor_id', 'id');
         if($this->isPatient())
