@@ -42,7 +42,7 @@
                             <td>2011/04/25</td>
                             <td>$320,800</td>
                             <td>Update Request</td>
-                            <td><button type="button" class="btn btn-success">Approve</button></td>
+                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#approveModal">Approve</button></td>
                         </tr>
                         <tr>
                             <td>Garrett Winters</td>
@@ -52,7 +52,7 @@
                             <td>2011/07/25</td>
                             <td>$170,750</td>
                             <td>New Appointment</td>
-                            <td><button type="button" class="btn btn-success">Approve</button></td>
+                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#approveModal">Approve</button></td>
                         </tr>
                         <tr>
                             <td>Ashton Cox</td>
@@ -62,7 +62,7 @@
                             <td>2009/01/12</td>
                             <td>$86,000</td>
                             <td>New Appointment</td>
-                            <td><button type="button" class="btn btn-success">Approve</button></td>
+                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#approveModal">Approve</button></td>
                         </tr>
                         </tfoot>
                     </table>
@@ -170,7 +170,9 @@
              </div>
          </div>
      </div>
-     </body>
+
+     <x-confirmationModal :title="'Approve Pending Appointment'" :desc="'Are you sure to approve this appointment?'"/>
+</body>
  @endsection
  @section('script')
  <script>
@@ -179,5 +181,6 @@
         $('#admin-upcoming-appt').DataTable();
         $('#admin-completed-appt').DataTable();
     } );
+
 </script>
  @stop

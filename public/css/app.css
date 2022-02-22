@@ -17182,6 +17182,14 @@ readers do not read off random characters that represent icons */
 
          column-gap: 1.25rem
 }
+.tw-bg-primary{
+
+
+    --tw-bg-opacity: 1;
+
+
+    background-color: rgb(74 154 248 / var(--tw-bg-opacity))
+}
 .tw-px-10{
 
 
