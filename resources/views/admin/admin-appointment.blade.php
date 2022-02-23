@@ -94,7 +94,7 @@
                             <td>$320,800</td>
                             <td>
                                 <span class="iconify" type="button" data-icon="bytesize:edit" style="color: rgb(151, 149, 149);" data-toggle="modal" data-target="#updateAppointmentModal"></span>
-                                <span class="iconify" type="button" data-icon="fluent:delete-28-regular" style="color: red;"></span> 
+                                <span class="iconify" type="button" data-icon="fluent:delete-28-regular" style="color: red;" data-toggle="modal" data-target="#deleteModal"></span> 
                             </td>                           
                         </tr>
                         <tr>
@@ -105,8 +105,8 @@
                             <td>2011/07/25</td>
                             <td>$170,750</td>
                             <td>
-                                <span class="iconify" type="button" data-icon="bytesize:edit" style="color: rgb(151, 149, 149);"></span>
-                                <span class="iconify" type="button" data-icon="fluent:delete-28-regular" style="color: red;"></span> 
+                                <span class="iconify" type="button" data-icon="bytesize:edit" style="color: rgb(151, 149, 149);" data-toggle="modal" data-target="#updateAppointmentModal"></span>
+                                <span class="iconify" type="button" data-icon="fluent:delete-28-regular" style="color: red;" data-toggle="modal" data-target="#deleteModal"></span> 
                             </td>       
                         </tr>
                         <tr>
@@ -117,8 +117,8 @@
                             <td>2009/01/12</td>
                             <td>$86,000</td>
                             <td>
-                                <span class="iconify" type="button" data-icon="bytesize:edit" style="color: rgb(151, 149, 149);"></span>
-                                <span class="iconify" type="button" data-icon="fluent:delete-28-regular" style="color: red;"></span> 
+                                <span class="iconify" type="button" data-icon="bytesize:edit" style="color: rgb(151, 149, 149);" data-toggle="modal" data-target="#updateAppointmentModal"></span>
+                                <span class="iconify" type="button" data-icon="fluent:delete-28-regular" style="color: red;" data-toggle="modal" data-target="#deleteModal"></span> 
                             </td>       
                         </tr>
                         </tfoot>
@@ -172,6 +172,7 @@
      </div>
      <x-adminUpdateAppointmentModal :title="'Update Appointment'" />
      <x-confirmationModal :title="'Approve Pending Appointment'" :desc="'Are you sure to approve this appointment?'"/>
+     <x-deleteConfirmationModal  :deletetitle="'Remove Appointment'" :deletedesc="'Are you sure to remove this appointment?'"></x-deleteConfirmationModal>
 </body>
  @endsection
  @section('script')
