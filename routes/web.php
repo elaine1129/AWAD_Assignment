@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/main/patient', function () {
     return view('patient-main');
 });
+
+Route::get('/admin/doctors', function () {
+    return view('admin-doctors');
+});
