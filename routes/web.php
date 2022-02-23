@@ -58,11 +58,11 @@ Route::get('/patient/main', function () {
 
 
 Route::get('/admin/appointment', function () {
-    return view('admin-appointment');
+    return view('admin/admin-appointment');
 });
 
 Route::get('/doctor/appointment', function () {
-    return view('doctor-appointment');
+    return view('doctor/doctor-appointment');
 });
 
 
