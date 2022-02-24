@@ -20,7 +20,7 @@ class CreateAppointmentsTable extends Migration
             $table->foreignIdFor(\App\Models\User::class, 'doctor_id');
             $table->foreignIdFor(\App\Models\Schedule::class, 'schedule_id');
             $table->longText('condition');
-            $table->time('timeslot')->nullable();
+            $table->smallInteger('timeslot')->nullable();
             $table->enum('status',['PENDING','CANCELLED','DONE','APPROVED']);
 //            $table->timestamp('date');
         });

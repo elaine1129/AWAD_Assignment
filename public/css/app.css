@@ -17139,6 +17139,11 @@ readers do not read off random characters that represent icons */
 
     --tw-backdrop-sepia:  
 }
+.tw-float-right{
+
+
+    float: right
+}
 .tw-flex{
 
 
@@ -17148,6 +17153,16 @@ readers do not read off random characters that represent icons */
 
 
     min-height: 100vh
+}
+.tw-w-32{
+
+
+    width: 8rem
+}
+.tw-w-full{
+
+
+    width: 100%
 }
 .tw-flex-row{
 
@@ -17171,6 +17186,22 @@ readers do not read off random characters that represent icons */
 
 
          column-gap: 1.25rem
+}
+.tw-bg-primary{
+
+
+    --tw-bg-opacity: 1;
+
+
+    background-color: rgb(74 154 248 / var(--tw-bg-opacity))
+}
+.tw-px-10{
+
+
+    padding-left: 2.5rem;
+
+
+    padding-right: 2.5rem
 }
 .tw-font-primary{
 
@@ -17220,6 +17251,30 @@ readers do not read off random characters that represent icons */
 
 
     color: rgb(144 210 247 / var(--tw-text-opacity))
+}
+@media (min-width: 640px){
+
+
+    .sm\:tw-px-20{
+
+
+        padding-left: 5rem;
+
+
+        padding-right: 5rem
+    }
+}
+@media (min-width: 1024px){
+
+
+    .lg\:tw-px-40{
+
+
+        padding-left: 10rem;
+
+
+        padding-right: 10rem
+    }
 }
 
 

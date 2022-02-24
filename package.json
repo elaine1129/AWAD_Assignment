@@ -25,6 +25,7 @@
         "webpack-cli": "^4.9.2"
     },
     "dependencies": {
-        "@iconify/iconify": "^2.1.2"
+        "@iconify/iconify": "^2.1.2",
+        "jquery-ui": "^1.13.1"
     }
 }

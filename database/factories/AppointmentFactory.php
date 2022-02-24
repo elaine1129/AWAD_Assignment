@@ -51,6 +51,7 @@ class AppointmentFactory extends Factory
             'doctor_id' => $doctorId,
             'schedule_id' => $scheduleId,
             'condition' => $this->faker->paragraph,
+            'timeslot'=>$i,
             'status' => $this->faker->randomElement(['PENDING', 'CANCELLED', 'DONE', 'APPROVED']),
         ];
     }

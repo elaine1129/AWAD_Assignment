@@ -8,6 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     use HasFactory;
+    protected $appends = ['time','date'];
+
+    public function getTimeAttribute()
+    {
+        return ($this->schedule_id && $this->timeslot) ? $this->schedule->getTime($this->timeslot) : null;
+    }
+
+    public function getDateAttribute()
+    {
+        return $this->schedule_id ? $this->schedule->date : null;
+    }
 
     public function patient()
     {

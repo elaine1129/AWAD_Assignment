@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AppointmentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,8 +52,21 @@ Route::prefix('/test')->group(function (){
     Route::get('/pr/{patient_id}', [\App\Http\Controllers\PatientRecordController::class, 'index']);
 });
 
-Route::get('/main/patient', function () {
+Route::get('/patient/main', function () {
     return view('patient-main');
 });
 
+
+Route::get('/admin/appointment', [AppointmentController::class,'showAll']);
+
+
+Route::get('/doctor/appointment', function () {
+    return view('doctor/doctor-appointment');
+});
+
+
+
+Route::get('/admin/doctors', function () {
+    return view('admin-doctors');
+});
 
