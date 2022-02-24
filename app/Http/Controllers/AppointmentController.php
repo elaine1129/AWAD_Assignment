@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\AppointmentResource;
 use App\Models\User;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -85,4 +86,21 @@ class AppointmentController extends Controller
     {
         //
     }
+
+    /**
+     * Show all appointments by status
+     */
+    public function showAll(){
+        $appointments_upcoming =  AppointmentResource::collection(Appointment::where('status','APPROVED')->get());
+        $appointments_pending =  AppointmentResource::collection(Appointment::where('status','PENDING')->get());
+        $appointments_completed =  AppointmentResource::collection(Appointment::where('status','DONE')->get());
+
+
+        return view('admin.admin-appointment',[
+            'appointments_upcoming'=>$appointments_upcoming,
+            'appointments_pending' => $appointments_pending,
+            'appointments_completed' => $appointments_completed,
+            ]);
+    }
+
 }

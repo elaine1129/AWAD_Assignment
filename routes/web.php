@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AppointmentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,13 +57,11 @@ Route::get('/patient/main', function () {
 });
 
 
+Route::get('/admin/appointment', [AppointmentController::class,'showAll']);
 
-Route::get('/admin/appointment', function () {
-    return view('admin-appointment');
-});
 
 Route::get('/doctor/appointment', function () {
-    return view('doctor-appointment');
+    return view('doctor/doctor-appointment');
 });
 
 
