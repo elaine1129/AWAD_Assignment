@@ -57,6 +57,7 @@ Route::get('/patient/main', function () {
 });
 
 
+
 Route::get('/admin/appointment', function () {
     return view('admin-appointment');
 });
@@ -65,4 +66,9 @@ Route::get('/doctor/appointment', function () {
     return view('doctor-appointment');
 });
 
+
+
+Route::get('/admin/doctors', function () {
+    return view('admin-doctors');
+});
 
