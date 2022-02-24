@@ -34,36 +34,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
-                            <td>Update Request</td>
-                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#approveModal">Approve</button></td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td>2011/07/25</td>
-                            <td>$170,750</td>
-                            <td>New Appointment</td>
-                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#approveModal">Approve</button></td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                            <td>66</td>
-                            <td>2009/01/12</td>
-                            <td>$86,000</td>
-                            <td>New Appointment</td>
-                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#approveModal">Approve</button></td>
-                        </tr>
+                            @foreach ($appointments_pending as $appointment)
+                            <tr>
+                                <td>{{ $appointment['patient']['name'] }}</td>
+                                <td>{{ $appointment['patient']['email'] }}</td>
+                                <td>{{ $appointment['schedule']? $appointment['schedule']['date'] : '-' }}</td>
+                                <td>{{ $appointment['timeslot']?  config('variables.TIMESLOT_STRINGS')[(int)$appointment['timeslot']] : '-' }}</td>
+                                <td>{{  $appointment['doctor']['name'] }}</td>
+                                <td>{{ $appointment['condition'] }}</td>
+                                <td>{{ $appointment['status'] }}</td>
+                                <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#approveModal">Approve</button></td>
+                            </tr>
+                            @endforeach
                         </tfoot>
                     </table>
                     </div>
@@ -74,53 +56,33 @@
                  <div class="container">
                     <table id="admin-upcoming-appt" class="table table-striped table-bordered">
                         <thead>
-                        <tr>
-                            <th>Patient Name</th>
-                            <th>Email</th>
-                            <th>Date</th>
-                            <th>Visit Time</th>
-                            <th>Doctor</th>
-                            <th>Condition</th>
-                            <th>Actions</th>
-                        </tr>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Email</th>
+                                <th>Date</th>
+                                <th>Visit Time</th>
+                                <th>Doctor</th>
+                                <th>Condition</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
-                            <td>
-                                <span class="iconify" type="button" data-icon="bytesize:edit" style="color: rgb(151, 149, 149);" data-toggle="modal" data-target="#updateAppointmentModal"></span>
-                                <span class="iconify" type="button" data-icon="fluent:delete-28-regular" style="color: red;" data-toggle="modal" data-target="#deleteModal"></span> 
-                            </td>                           
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td>2011/07/25</td>
-                            <td>$170,750</td>
-                            <td>
-                                <span class="iconify" type="button" data-icon="bytesize:edit" style="color: rgb(151, 149, 149);" data-toggle="modal" data-target="#updateAppointmentModal"></span>
-                                <span class="iconify" type="button" data-icon="fluent:delete-28-regular" style="color: red;" data-toggle="modal" data-target="#deleteModal"></span> 
-                            </td>       
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                            <td>66</td>
-                            <td>2009/01/12</td>
-                            <td>$86,000</td>
-                            <td>
-                                <span class="iconify" type="button" data-icon="bytesize:edit" style="color: rgb(151, 149, 149);" data-toggle="modal" data-target="#updateAppointmentModal"></span>
-                                <span class="iconify" type="button" data-icon="fluent:delete-28-regular" style="color: red;" data-toggle="modal" data-target="#deleteModal"></span> 
-                            </td>       
-                        </tr>
+                            @foreach ($appointments_upcoming as $appointment)
+                                <tr>
+                                    <td>{{ $appointment['patient']['name'] }}</td>
+                                    <td>{{ $appointment['patient']['email'] }}</td>
+                                    <td>{{ $appointment['schedule']? $appointment['schedule']['date'] : '-' }}</td>
+                                    <td>{{ $appointment['timeslot']?  config('variables.TIMESLOT_STRINGS')[(int)$appointment['timeslot']] : '-' }}</td>
+                                    <td>{{  $appointment['doctor']['name'] }}</td>
+                                    <td>{{ $appointment['condition'] }}</td>
+                                    <td>{{ $appointment['status'] }}</td>
+                                    <td>
+                                        <span class="iconify" type="button" data-icon="bytesize:edit" style="color: rgb(151, 149, 149);" data-toggle="modal" data-target="#updateAppointmentModal"></span>
+                                        <span class="iconify" type="button" data-icon="fluent:delete-28-regular" style="color: red;" data-toggle="modal" data-target="#deleteModal"></span> 
+                                    </td>                           
+                                </tr>
+                            @endforeach
                         </tfoot>
                     </table>
                 </div>
@@ -137,33 +99,22 @@
                             <th>Visit Time</th>
                             <th>Doctor</th>
                             <th>Condition</th>
+                            <th>Status</th>
                        </tr>
                        </thead>
                        <tbody>
-                       <tr>
-                           <td>Tiger Nixon</td>
-                           <td>System Architect</td>
-                           <td>Edinburgh</td>
-                           <td>61</td>
-                           <td>2011/04/25</td>
-                           <td>$320,800</td>
-                       </tr>
-                       <tr>
-                           <td>Garrett Winters</td>
-                           <td>Accountant</td>
-                           <td>Tokyo</td>
-                           <td>63</td>
-                           <td>2011/07/25</td>
-                           <td>$170,750</td>
-                       </tr>
-                       <tr>
-                           <td>Ashton Cox</td>
-                           <td>Junior Technical Author</td>
-                           <td>San Francisco</td>
-                           <td>66</td>
-                           <td>2009/01/12</td>
-                           <td>$86,000</td>
-                       </tr>
+                           @foreach ($appointments_completed as $appointment)
+                           <tr>
+                            <td>{{ $appointment['patient']['name'] }}</td>
+                            <td>{{ $appointment['patient']['email'] }}</td>
+                            <td>{{ $appointment['schedule']? $appointment['schedule']['date'] : '-' }}</td>
+                            <td>{{ $appointment['timeslot']?  config('variables.TIMESLOT_STRINGS')[(int)$appointment['timeslot']] : '-' }}</td>
+                            <td>{{  $appointment['doctor']['name'] }}</td>
+                            <td>{{ $appointment['condition'] }}</td>
+                            <td>{{ $appointment['status'] }}</td>
+                        </tr>
+                           @endforeach
+                     
                        </tfoot>
                    </table>
                </div>
@@ -177,7 +128,8 @@
  @endsection
  @section('script')
  <script>
-    $(document).ready(function() {
+
+  $(document).ready(function() {
         $('#admin-pending-appt').DataTable();
         $('#admin-upcoming-appt').DataTable();
         $('#admin-completed-appt').DataTable();

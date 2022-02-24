@@ -41,22 +41,10 @@
                    <label for="timeslot">Timeslot:</label>
   
                    <div class="form-group d-flex flex-row  flex-wrap justify-content-center">
-                     <div class="timeslot">9.00am</div>
-                     <div class="timeslot">9.30am</div>
-                     <div class="timeslot">10.00am</div>
-                     <div class="timeslot">10.30am</div>
-                     <div class="timeslot">11.00am</div>
-                     <div class="timeslot">11.30am</div>
-                     <div class="timeslot">2.00pm</div>
-                     <div class="timeslot">2.30pm</div>
-                     <div class="timeslot">3.00pm</div>
-                     <div class="timeslot">3.30pm</div>
-                     <div class="timeslot">4.00pm</div>
-                     <div class="timeslot">4.30pm</div>
-
-
+                     @foreach (config('variables.TIMESLOT_STRINGS') as $timeslot)
+                     <div class="timeslot">{{ $timeslot }}</div>
+                     @endforeach
                    </div>
-
                   </form>
                    
                </div>
