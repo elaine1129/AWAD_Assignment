@@ -12,12 +12,12 @@ class Appointment extends Model
 
     public function getTimeAttribute()
     {
-        return ($this->schedule_id && $this->timeslot) ? $this->schedule->getTime($this->timeslot) : null;
+        return ($this->schedule_id != null && $this->timeslot != null && $this->schedule != null) ? $this->schedule->getTime($this->timeslot) : null;
     }
 
     public function getDateAttribute()
     {
-        return $this->schedule_id ? $this->schedule->date : null;
+        return $this->schedule_id ? Schedule::find($this->schedule_id)->date : null;
     }
 
     public function patient()
@@ -32,7 +32,7 @@ class Appointment extends Model
 
     public function schedule()
     {
-        return $this->hasOne(Schedule::class, 'id', 'id');
+        return $this->hasOne(Schedule::class,  'id','schedule_id');
     }
 
     public function patient_records()

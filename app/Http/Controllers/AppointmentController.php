@@ -91,16 +91,13 @@ class AppointmentController extends Controller
      * Show all appointments by status
      */
     public function showAll(){
-        $appointments_upcoming =  AppointmentResource::collection(Appointment::where('status','APPROVED')->get());
-        $appointments_pending =  AppointmentResource::collection(Appointment::where('status','PENDING')->get());
-        $appointments_completed =  AppointmentResource::collection(Appointment::where('status','DONE')->get());
-
-
+        $appointments_upcoming =  AppointmentResource::collection(Appointment::where('status','APPROVED')->get())->resolve();
+        $appointments_pending =  AppointmentResource::collection(Appointment::where('status','PENDING')->get())->resolve();
+        $appointments_completed =  AppointmentResource::collection(Appointment::where('status','DONE')->get())->resolve();
         return view('admin.admin-appointment',[
             'appointments_upcoming'=>$appointments_upcoming,
             'appointments_pending' => $appointments_pending,
             'appointments_completed' => $appointments_completed,
             ]);
     }
-
 }
