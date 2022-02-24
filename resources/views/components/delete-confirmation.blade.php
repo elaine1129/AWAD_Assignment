@@ -8,12 +8,18 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="modalDesc">
           {{ $modalDesc }}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-danger">Delete</button>
+
+{{--            ACTION TO BE SET DYNAMICALLY--}}
+            <form action="" METHOD="POST" id="modalDeleteForm">
+                @csrf
+                @method('DELETE')
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
         </div>
       </div>
     </div>

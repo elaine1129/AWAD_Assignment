@@ -40,6 +40,9 @@ Route::middleware('auth')->group(function (){
 
 
 
+Route::get('/patients', [\App\Http\Controllers\AdminDoctor\PatientController::class,'index'])->name('patient.index');
+Route::delete('/patients/{patient}', [\App\Http\Controllers\AdminDoctor\PatientController::class,'destroy'])->name('patient.delete');
+Route::get('/patients/{patient}', [\App\Http\Controllers\AdminDoctor\PatientController::class,'show'])->name('patient.show');
 
 
 

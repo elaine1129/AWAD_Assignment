@@ -12,3 +12,32 @@
 @tailwind components;
 @tailwind utilities;
 
+.tw-text-highlight-blue{
+    @apply tw-inline-block tw-px-[0.5rem] tw-rounded tw-bg-blue-100 tw-font-semibold
+}
+
+.two-lines-text
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/*patient profile*/
+.patient-profile-card{
+    @apply  tw-bg-indigo-50 tw-rounded tw-py-5 tw-px-4 md:tw-col-span-3 tw-col-span-5
+}
+
+.patient-profile-card>div{
+    @apply tw-grid tw-grid-cols-2
+}
+.patient-profile-card>div>div:first-child{
+    @apply tw-font-semibold tw-px-4 tw-py-2
+}
+.patient-profile-card>div>div:last-child{
+    @apply tw-px-4 tw-py-2
+}
+/*patient profile end*/

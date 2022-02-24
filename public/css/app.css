@@ -17012,269 +17012,244 @@ readers do not read off random characters that represent icons */
   border-width: 0; }
 
 *, ::before, ::after{
-
-
     --tw-translate-x: 0;
-
-
     --tw-translate-y: 0;
-
-
     --tw-rotate: 0;
-
-
     --tw-skew-x: 0;
-
-
     --tw-skew-y: 0;
-
-
     --tw-scale-x: 1;
-
-
     --tw-scale-y: 1;
-
-
     --tw-pan-x:  ;
-
-
     --tw-pan-y:  ;
-
-
     --tw-pinch-zoom:  ;
-
-
     --tw-scroll-snap-strictness: proximity;
-
-
     --tw-ordinal:  ;
-
-
     --tw-slashed-zero:  ;
-
-
     --tw-numeric-figure:  ;
-
-
     --tw-numeric-spacing:  ;
-
-
     --tw-numeric-fraction:  ;
-
-
     --tw-ring-inset:  ;
-
-
     --tw-ring-offset-width: 0px;
-
-
     --tw-ring-offset-color: #fff;
-
-
     --tw-ring-color: rgb(59 130 246 / 0.5);
-
-
     --tw-ring-offset-shadow: 0 0 #0000;
-
-
     --tw-ring-shadow: 0 0 #0000;
-
-
     --tw-shadow: 0 0 #0000;
-
-
     --tw-shadow-colored: 0 0 #0000;
-
-
     --tw-blur:  ;
-
-
     --tw-brightness:  ;
-
-
     --tw-contrast:  ;
-
-
     --tw-grayscale:  ;
-
-
     --tw-hue-rotate:  ;
-
-
     --tw-invert:  ;
-
-
     --tw-saturate:  ;
-
-
     --tw-sepia:  ;
-
-
     --tw-drop-shadow:  ;
-
-
     --tw-backdrop-blur:  ;
-
-
     --tw-backdrop-brightness:  ;
-
-
     --tw-backdrop-contrast:  ;
-
-
     --tw-backdrop-grayscale:  ;
-
-
     --tw-backdrop-hue-rotate:  ;
-
-
     --tw-backdrop-invert:  ;
-
-
     --tw-backdrop-opacity:  ;
-
-
     --tw-backdrop-saturate:  ;
-
-
-    --tw-backdrop-sepia:  
+    --tw-backdrop-sepia:  ;
+}
+.tw-absolute{
+    position: absolute;
+}
+.tw-relative{
+    position: relative;
+}
+.tw--top-7{
+    top: -1.75rem;
+}
+.tw-col-span-2{
+    grid-column: span 2 / span 2;
+}
+.tw-col-span-5{
+    grid-column: span 5 / span 5;
 }
 .tw-float-right{
-
-
-    float: right
+    float: right;
+}
+.tw-mt-5{
+    margin-top: 1.25rem;
 }
 .tw-flex{
-
-
-    display: flex
+    display: flex;
+}
+.tw-grid{
+    display: grid;
 }
 .tw-min-h-screen{
-
-
-    min-height: 100vh
+    min-height: 100vh;
 }
 .tw-w-32{
-
-
-    width: 8rem
+    width: 8rem;
 }
 .tw-w-full{
-
-
-    width: 100%
+    width: 100%;
+}
+.tw-grid-cols-5{
+    grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 .tw-flex-row{
-
-
-    flex-direction: row
+    flex-direction: row;
 }
 .tw-items-center{
-
-
-    align-items: center
+    align-items: center;
 }
 .tw-justify-center{
-
-
-    justify-content: center
+    justify-content: center;
+}
+.tw-justify-around{
+    justify-content: space-around;
 }
 .tw-gap-x-5{
-
-
     -moz-column-gap: 1.25rem;
-
-
-         column-gap: 1.25rem
+         column-gap: 1.25rem;
+}
+.tw-space-y-10 > :not([hidden]) ~ :not([hidden]){
+    --tw-space-y-reverse: 0;
+    margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
+}
+.tw-rounded-full{
+    border-radius: 9999px;
 }
 .tw-bg-primary{
-
-
     --tw-bg-opacity: 1;
-
-
-    background-color: rgb(74 154 248 / var(--tw-bg-opacity))
+    background-color: rgb(74 154 248 / var(--tw-bg-opacity));
+}
+.tw-bg-blue-200{
+    --tw-bg-opacity: 1;
+    background-color: rgb(191 219 254 / var(--tw-bg-opacity));
+}
+.tw-p-\[0\.8rem\]{
+    padding: 0.8rem;
+}
+.tw-p-5{
+    padding: 1.25rem;
 }
 .tw-px-10{
-
-
     padding-left: 2.5rem;
-
-
-    padding-right: 2.5rem
+    padding-right: 2.5rem;
 }
 .tw-font-primary{
-
-
-    font-family: Lato, sans-serif
+    font-family: Lato, sans-serif;
 }
 .tw-font-Lato{
-
-
-    font-family: Lato, sans-serif
+    font-family: Lato, sans-serif;
 }
 .tw-font-Poppins{
-
-
-    font-family: Poppins, sans-serif
+    font-family: Poppins, sans-serif;
 }
 .tw-font-Rubik{
-
-
-    font-family: Rubik, sans-serif
+    font-family: Rubik, sans-serif;
 }
 .tw-font-Montserrat{
-
-
-    font-family: Montserrat, sans-serif
+    font-family: Montserrat, sans-serif;
 }
 .tw-text-lg{
-
-
     font-size: 1.125rem;
-
-
-    line-height: 1.75rem
+    line-height: 1.75rem;
+}
+.tw-text-4xl{
+    font-size: 2.25rem;
+    line-height: 2.5rem;
 }
 .tw-text-primary{
-
-
     --tw-text-opacity: 1;
-
-
-    color: rgb(74 154 248 / var(--tw-text-opacity))
+    color: rgb(74 154 248 / var(--tw-text-opacity));
 }
 .tw-text-at-primary{
-
-
     --tw-text-opacity: 1;
-
-
-    color: rgb(144 210 247 / var(--tw-text-opacity))
+    color: rgb(144 210 247 / var(--tw-text-opacity));
 }
+.tw-text-indigo-800{
+    --tw-text-opacity: 1;
+    color: rgb(55 48 163 / var(--tw-text-opacity));
+}
+
+.tw-text-highlight-blue{
+    display: inline-block;
+    border-radius: 0.25rem;
+    --tw-bg-opacity: 1;
+    background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-weight: 600;
+}
+
+.two-lines-text
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/*patient profile*/
+.patient-profile-card{
+    grid-column: span 5 / span 5;
+    border-radius: 0.25rem;
+    --tw-bg-opacity: 1;
+    background-color: rgb(238 242 255 / var(--tw-bg-opacity));
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+@media (min-width: 768px){
+
+
+    .patient-profile-card{
+        grid-column: span 3 / span 3;
+    }
+}
+
+.patient-profile-card>div{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.patient-profile-card>div>div:first-child{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-weight: 600;
+}
+.patient-profile-card>div>div:last-child{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+/*patient profile end*/
 @media (min-width: 640px){
 
 
     .sm\:tw-px-20{
-
-
         padding-left: 5rem;
+        padding-right: 5rem;
+    }
+}
+@media (min-width: 768px){
 
 
-        padding-right: 5rem
+    .md\:tw-col-span-2{
+        grid-column: span 2 / span 2;
     }
 }
 @media (min-width: 1024px){
 
 
     .lg\:tw-px-40{
-
-
         padding-left: 10rem;
-
-
-        padding-right: 10rem
+        padding-right: 10rem;
     }
 }
-
 

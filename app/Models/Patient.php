@@ -45,6 +45,6 @@ class Patient extends User
 
     public function appointments()
     {
-        return Appointment::all();
+        return $this->doctorAndPatient(Appointment::class);
     }
 }
