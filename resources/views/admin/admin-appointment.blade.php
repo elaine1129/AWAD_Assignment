@@ -53,7 +53,7 @@
                                 </td>
                             </tr>
                         @endforeach
-                        </tfoot>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                                 </td>
                             </tr>
                         @endforeach
-                        </tfoot>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -123,7 +123,7 @@
                                 <td>{{ $appointment['status'] }}</td>
                             </tr>
                         @endforeach
-                        </tfoot>
+                        <tbody>
                     </table>
                 </div>
             </div>
