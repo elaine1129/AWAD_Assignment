@@ -27,11 +27,8 @@
                             <td>{{ $patient['gender'] }}</td>
                             <td>{{ $patient['phone'] }}</td>
                             <td class="tw-flex tw-justify-around">
-                                <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                                        data-target="#approveModal">
-                                    View
-                                </button>
-                                <button type="button" class="btn btn-outline-danger"
+                                <a href="{{route('patient.show', $patient['id'])}}" class="btn btn-primary btn-sm">View</a>
+                                <button type="button" class="btn btn-outline-danger btn-sm"
                                         onclick="deletePatient(`patients/{{$patient['id']}}`,`{{$patient['name']}}`)">
                                     Delete
                                 </button>

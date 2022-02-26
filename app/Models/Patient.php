@@ -13,6 +13,13 @@ class Patient extends User
 {
     protected $table = 'users';
 
+    public function resolveRouteBindingQuery($query, $value, $field = null)
+    {
+        $user = parent::resolveRouteBindingQuery($query, $value, $field);
+        if(!$user->first()->getModel()->isPatient()) abort('404');
+        return $user;
+    }
+
     // permission implementation v1 START
     public function permissions()
     {

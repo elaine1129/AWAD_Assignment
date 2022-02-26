@@ -28,6 +28,17 @@ Route::middleware('auth')->group(function (){
     Route::view('/home', 'common.home')->name('home');
     Route::get('/logout',[\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
+//  doctor and admin
+    Route::get('/patients', [\App\Http\Controllers\AdminDoctor\PatientController::class,'index'])->name('patient.index');
+    Route::delete('/patients/{patient}', [\App\Http\Controllers\AdminDoctor\PatientController::class,'destroy'])->name('patient.delete');
+    Route::get('/patients/{patient}', [\App\Http\Controllers\AdminDoctor\PatientController::class,'show'])->name('patient.show');
+
+    Route::get('/patients-record/create/{patient}',[\App\Http\Controllers\PatientRecordController::class,'create'])->name('patient-record.create');
+    Route::post('/patients-record',[\App\Http\Controllers\PatientRecordController::class,'store'])->name('patient-record.store');
+    Route::get('/patients-record/{patient_record}/edit',[\App\Http\Controllers\PatientRecordController::class,'edit'])->name('patient-record.edit');
+    Route::put('/patients-record/{patient_record}',[\App\Http\Controllers\PatientRecordController::class,'update'])->name('patient-record.update');
+    Route::delete('/patients-record/{patient_record}',[\App\Http\Controllers\PatientRecordController::class,'destroy'])->name('patient-record.destroy');
+
 //    admin
     Route::view('/register-doctor', 'admin.register-doctor');
     Route::post('/register-doctor',[\App\Http\Controllers\Auth\LoginController::class, 'registerDoctor'])->name('register-doctor');
@@ -37,12 +48,6 @@ Route::middleware('auth')->group(function (){
     Route::post('/edit-profile',[\App\Http\Controllers\Auth\LoginController::class, 'editDoctorProfile'])->name('edit-profile');
 });
 
-
-
-
-Route::get('/patients', [\App\Http\Controllers\AdminDoctor\PatientController::class,'index'])->name('patient.index');
-Route::delete('/patients/{patient}', [\App\Http\Controllers\AdminDoctor\PatientController::class,'destroy'])->name('patient.delete');
-Route::get('/patients/{patient}', [\App\Http\Controllers\AdminDoctor\PatientController::class,'show'])->name('patient.show');
 
 
 

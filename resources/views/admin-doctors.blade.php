@@ -34,7 +34,7 @@
                         </button>
                     </div>
 
-                   
+
                 </div>
 
                 <!-- Responsive table -->
@@ -118,17 +118,16 @@
                                     </ul>
                                 </td>
                             </tr>
-                            
+
                         </tbody>
                     </table>
-                    
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-</body>
 @endsection
 @section('script')
 @stop

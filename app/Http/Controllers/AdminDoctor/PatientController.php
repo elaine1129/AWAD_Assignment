@@ -24,7 +24,8 @@ class PatientController extends Controller
 
     public function show(Patient $patient)
     {
-        $patientResource = new PatientResource($patient);
-        return view('patient.profile')->with('patient', $patientResource->resolve());
+//        $patientResource = new PatientResource($patient);
+        return view('patient.profile')->with('patient',$patient);
     }
+
 }
