@@ -20,31 +20,6 @@ class Doctor extends User
         return $user;
     }
 
-    // permission implementation v1 START
-    public function permissions()
-    {
-        switch ($this->role) {
-            case self::ADMIN:
-                return ['admin.view'];
-                break;
-            case self::DOCTOR:
-                return ['doctor.view'];
-                break;
-            case self::PATIENT:
-                return ['patient.view'];
-                break;
-        }
-        return [];
-    }
-
-    public function hasPermission($permit)
-    {
-        return in_array($this->permissions(), $permit);
-    }
-    // use in blade template @if ($admin->hasPermission('admin.index')) //@endif
-
-    // permission implementation END
-
     //attributes START
 
     public function schedules()

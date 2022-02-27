@@ -3,8 +3,9 @@
 @include('partials.errors')
 @include('partials.success')
 @section('body')
-    <form action="{{route('edit-profile')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('doctor.edit-profile')}}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <div class="label">
             <label for="email"> Email: </label>
         </div>

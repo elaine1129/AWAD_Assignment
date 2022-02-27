@@ -66,33 +66,12 @@ class User extends Authenticatable
     }
 
     public function setDataAttribute(array $value){
+        if($this->isDoctor()){
+            if(!isset($value["image_url"]))
+                $value["image_url"] = '/public/profile-placeholder.svg';
+        }
         $this->attributes['data']=json_encode($value);
     }
-
-    // permission implementation v1 START
-    public function permissions()
-    {
-        switch ($this->role) {
-            case self::ADMIN:
-                return ['admin.view'];
-                break;
-            case self::DOCTOR:
-                return ['doctor.view'];
-                break;
-            case self::PATIENT:
-                return ['patient.view'];
-                break;
-        }
-        return [];
-    }
-
-    public function hasPermission($permit)
-    {
-        return in_array($this->permissions(), $permit);
-    }
-    // use in blade template @if ($admin->hasPermission('admin.index')) //@endif
-
-    // permission implementation END
 
     public function isDoctor()
     {

@@ -58,3 +58,9 @@
         </table>
     </div>
 </div>
+
+@push('append-scripts')
+    <script>
+
+    </script>
+@endpush

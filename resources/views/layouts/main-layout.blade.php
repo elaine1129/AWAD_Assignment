@@ -11,8 +11,11 @@
     @yield('styles')
 </head>
 <body>
+@yield('navbar',\View::make('partials.navbar'))
+{{--@include('partials.navbar')--}}
 @yield('body')
 
 </body>
 <script src="{{asset('js/app.js')}}"></script>
 @yield('script')
+@stack('child-script')

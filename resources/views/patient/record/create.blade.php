@@ -1,4 +1,5 @@
 @extends('layouts.main-layout')
+@section('navbar')@stop
 @section('body')
     <div class="container">
         <div class="row tw-mt-5">
@@ -46,4 +47,5 @@
             $('input[name="' + this.name + '"]').not(this).prop('checked', false);
         });
     </script>
+    @stack('append-scripts')
 @endsection
