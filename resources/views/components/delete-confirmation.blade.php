@@ -14,7 +14,7 @@
         <div class="modal-footer">
 
 {{--            ACTION TO BE SET DYNAMICALLY--}}
-            <form action="" METHOD="POST" id="modalDeleteForm">
+            <form action="{{ $modalAction }}" METHOD="POST" id="modalDeleteForm">
                 @csrf
                 @method('DELETE')
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -24,3 +24,12 @@
       </div>
     </div>
   </div>
+
+@push('child-script')
+    <script>
+        function deleteConfirm(){
+            $('#deleteModal').modal().show()
+        }
+
+    </script>
+@endpush

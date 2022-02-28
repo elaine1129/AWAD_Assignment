@@ -29,9 +29,9 @@
                     </div>
                     <div class="col-7"></div>
                     <div class="col">
-                        <button class="btn btn-primary" type="button" data-toggle="tooltip" data-placement="top" title="Add">
+                        <a class="btn btn-primary" type="button" data-toggle="tooltip" data-placement="top" title="Add" href="{{route('register-doctor')}}">
                             <i class="fa fa-plus"></i>
-                        </button>
+                        </a>
                     </div>
 
 

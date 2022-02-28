@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,12 +13,12 @@ class Appointment extends Model
 
     public function getTimeAttribute()
     {
-        return ($this->schedule_id != null && $this->timeslot != null && $this->schedule != null) ? $this->schedule->getTime($this->timeslot) : null;
+        return ($this->schedule_id != null && $this->timeslot != null && $this->schedule != null) ? Carbon::parse($this->schedule->getTime($this->timeslot))->format(config('clinic.time_format')) : null;
     }
 
     public function getDateAttribute()
     {
-        return $this->schedule_id ? Schedule::find($this->schedule_id)->date : null;
+        return $this->schedule_id ? Carbon::parse(Schedule::find($this->schedule_id)->date)->format(config('clinic.date_format')) : null;
     }
 
     public function patient()

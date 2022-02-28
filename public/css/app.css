@@ -17092,6 +17092,18 @@ readers do not read off random characters that represent icons */
 .tw-mt-5{
     margin-top: 1.25rem;
 }
+.tw-mb-3{
+    margin-bottom: 0.75rem;
+}
+.tw-ml-auto{
+    margin-left: auto;
+}
+.tw-mb-5{
+    margin-bottom: 1.25rem;
+}
+.tw-mb-10{
+    margin-bottom: 2.5rem;
+}
 .tw-flex{
     display: flex;
 }
@@ -17101,17 +17113,8 @@ readers do not read off random characters that represent icons */
 .tw-h-16{
     height: 4rem;
 }
-.tw-max-h-3{
-    max-height: 0.75rem;
-}
 .tw-max-h-5{
     max-height: 1.25rem;
-}
-.tw-max-h-6{
-    max-height: 1.5rem;
-}
-.tw-max-h-10{
-    max-height: 2.5rem;
 }
 .tw-min-h-screen{
     min-height: 100vh;
@@ -17134,11 +17137,17 @@ readers do not read off random characters that represent icons */
 .tw-flex-row{
     flex-direction: row;
 }
+.tw-flex-wrap{
+    flex-wrap: wrap;
+}
 .tw-items-center{
     align-items: center;
 }
 .tw-justify-center{
     justify-content: center;
+}
+.tw-justify-between{
+    justify-content: space-between;
 }
 .tw-justify-around{
     justify-content: space-around;
@@ -17155,6 +17164,9 @@ readers do not read off random characters that represent icons */
 .tw-rounded-full{
     border-radius: 9999px;
 }
+.tw-rounded{
+    border-radius: 0.25rem;
+}
 .tw-bg-primary{
     --tw-bg-opacity: 1;
     background-color: rgb(74 154 248 / var(--tw-bg-opacity));
@@ -17167,11 +17179,22 @@ readers do not read off random characters that represent icons */
     --tw-bg-opacity: 1;
     background-color: rgb(191 219 254 / var(--tw-bg-opacity));
 }
+.tw-bg-red-200{
+    --tw-bg-opacity: 1;
+    background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+.tw-bg-red-100{
+    --tw-bg-opacity: 1;
+    background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
 .tw-p-\[0\.8rem\]{
     padding: 0.8rem;
 }
 .tw-p-5{
     padding: 1.25rem;
+}
+.tw-p-2{
+    padding: 0.5rem;
 }
 .tw-px-10{
     padding-left: 2.5rem;
@@ -17184,6 +17207,16 @@ readers do not read off random characters that represent icons */
 .tw-px-1{
     padding-left: 0.25rem;
     padding-right: 0.25rem;
+}
+.tw-px-3{
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+.tw-pt-3{
+    padding-top: 0.75rem;
+}
+.tw-pb-10{
+    padding-bottom: 2.5rem;
 }
 .tw-font-primary{
     font-family: Lato, sans-serif;
@@ -17208,13 +17241,19 @@ readers do not read off random characters that represent icons */
     font-size: 2.25rem;
     line-height: 2.5rem;
 }
-.tw-text-2xl{
-    font-size: 1.5rem;
-    line-height: 2rem;
-}
 .tw-text-3xl{
     font-size: 1.875rem;
     line-height: 2.25rem;
+}
+.tw-text-xl{
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+.tw-font-semibold{
+    font-weight: 600;
+}
+.tw-font-medium{
+    font-weight: 500;
 }
 .tw-text-primary{
     --tw-text-opacity: 1;
@@ -17227,6 +17266,26 @@ readers do not read off random characters that represent icons */
 .tw-text-indigo-800{
     --tw-text-opacity: 1;
     color: rgb(55 48 163 / var(--tw-text-opacity));
+}
+.tw-text-gray-500{
+    --tw-text-opacity: 1;
+    color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+.tw-text-gray-800{
+    --tw-text-opacity: 1;
+    color: rgb(31 41 55 / var(--tw-text-opacity));
+}
+.tw-text-red-400{
+    --tw-text-opacity: 1;
+    color: rgb(248 113 113 / var(--tw-text-opacity));
+}
+.tw-text-red-700{
+    --tw-text-opacity: 1;
+    color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+.tw-text-red-300{
+    --tw-text-opacity: 1;
+    color: rgb(252 165 165 / var(--tw-text-opacity));
 }
 .tw-shadow-md{
     --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -17295,6 +17354,14 @@ readers do not read off random characters that represent icons */
     --tw-bg-opacity: 1;
     background-color: rgb(219 234 254 / var(--tw-bg-opacity));
 }
+.hover\:tw-bg-red-400:hover{
+    --tw-bg-opacity: 1;
+    background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
+.hover\:tw-bg-red-200:hover{
+    --tw-bg-opacity: 1;
+    background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
 @media (min-width: 640px){
 
 
@@ -17311,13 +17378,13 @@ readers do not read off random characters that represent icons */
     }
 
 
-    .md\:tw-mt-0{
-        margin-top: 0px;
+    .md\:tw-mb-3{
+        margin-bottom: 0.75rem;
     }
 
 
-    .md\:tw-mb-3{
-        margin-bottom: 0.75rem;
+    .md\:tw-flex-row{
+        flex-direction: row;
     }
 }
 @media (min-width: 1024px){

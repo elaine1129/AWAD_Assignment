@@ -1,8 +1,8 @@
 @extends('layouts.main-layout')
 
+@section('body')
 @include('partials.errors')
 @include('partials.success')
-@section('body')
 <form action="{{route('register-doctor')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="label">

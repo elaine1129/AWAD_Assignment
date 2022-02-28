@@ -10,7 +10,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
-<body>
+<body class="tw-font-primary">
 @yield('navbar',\View::make('partials.navbar'))
 {{--@include('partials.navbar')--}}
 @yield('body')

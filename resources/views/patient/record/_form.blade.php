@@ -37,9 +37,7 @@
             </thead>
             <tbody>
             @if(!is_null($patient['appointments']))
-                @foreach ($patient->appointments->filter(function($val){
-                             return in_array($val->status, ['APPROVED','DONE']);
-                        }) as $appointment)
+                @foreach ($patient->getDoneAppointment() as $appointment)
                     <tr>
                         <td>{{ $appointment['schedule'] ? \Carbon\Carbon::parse($patient['date'])->format(config('clinic.date_format')) : '-' }}</td>
                         <td>{{ $appointment['timeslot'] ? $appointment['time'] : '-' }}</td>

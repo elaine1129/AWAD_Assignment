@@ -100,7 +100,7 @@ class LoginController extends Controller
             'data'=> $doctorData
         ]);
 
-        return redirect()->back()->with('success', 'New doctor registered and temporarily password has been sent to '.$accountInfo['email'])->withInput();
+        return redirect(route('doctor.index'))->with('success', 'New doctor registered and temporarily password has been sent to '.$accountInfo['email'])->withInput();
     }
 
     public function showProfile()

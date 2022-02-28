@@ -35,6 +35,12 @@ Route::middleware('auth')->group(function (){
     Route::get('/change-password',[LoginController::class, 'showEditPassword'])->name('common.show-password');
     Route::put('/change-password',[LoginController::class, 'editPassword'])->name('common.edit-password');
 
+//    patient
+    Route::middleware('can:patient-access')->group(function (){
+        Route::get('/patients-profile', [PatientController::class,'showOwnProfile'])->name('patient-profile.show');
+    });
+
+
 //  doctor and admin
     Route::get('/patients', [PatientController::class,'index'])->name('patient.index');
     Route::delete('/patients/{patient}', [PatientController::class,'destroy'])->name('patient.delete');
@@ -47,16 +53,20 @@ Route::middleware('auth')->group(function (){
     Route::delete('/patients-record/{patient_record}',[PatientRecordController::class,'destroy'])->name('patient-record.destroy');
 
 //    admin
-    Route::middleware('can:admin-access')->group(function (){
+    Route::middleware('can:admin-access')->prefix('admin')->group(function (){
         Route::view('/register-doctor', 'admin.register-doctor');
         Route::post('/register-doctor',[LoginController::class, 'registerDoctor'])->name('register-doctor');
-        Route::view('/doctors','admin-doctors')->name('doctor.index');
+        Route::view('/doctors','doctor.admin-doctors')->name('doctor.index');
+        Route::get('/appointment', [AppointmentController::class,'showAll'])->name('admin-appointment');
     });
 
 
 //    doctor
-    Route::middleware('can:doctor-access')->group(function (){
-
+    Route::middleware('can:doctor-access')->prefix('doctor')->group(function (){
+        Route::get('/appointment', function () {
+            return view('doctor/doctor-appointment');
+        })->name('doctor-appointment');
+        Route::get('/mark-appointment-done/{appointment}', [AppointmentController::class, 'markAsDone'])->name('appointment.mark-done');
     });
 });
 
@@ -76,16 +86,6 @@ Route::get('/patient/main', function () {
 });
 
 
-Route::get('/admin/appointment', [AppointmentController::class,'showAll']);
 
 
-Route::get('/doctor/appointment', function () {
-    return view('doctor/doctor-appointment');
-});
-
-
-
-Route::get('/admin/doctors', function () {
-    return view('admin-doctors');
-});
 

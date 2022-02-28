@@ -20,7 +20,6 @@ class PatientResource extends JsonResource
             "email" => $this->email,
             "created_at" => $this->created_at,
             "updated_at" => $this->updated_at,
-            "name" => $this->data['name'],
             "ic" => $this->data['ic'],
             "phone" => $this->data['phone'],
             "gender" => $this->data['gender'],

@@ -18,21 +18,27 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/patient/main">Appointments</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
                 @endauth
                 @can('admin-access')
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/appointment">Appointments</a>
+                        <a class="nav-link" href="{{route('admin-appointment')}}">Appointments</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('patient.index')}}">Patients</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Doctors</a>
+                        <a class="nav-link" href="{{route('doctor.index')}}">Doctors</a>
                     </li>
                 @endcan
                 @can('doctor-access')
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Appointments</a>
+                        <a class="nav-link" href="{{route('doctor-appointment')}}">Appointments</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('patient.index')}}">Patients</a>
@@ -51,7 +57,10 @@
                             {{\Illuminate\Support\Facades\Auth::user()->name}}
                         </a>
                         <div class="dropdown-menu md:tw-mb-3 lg:tw-mb-0" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{{route('common.show-profile')}}">Profile</a>
+                            @can('patient-access')
+                                <a class="dropdown-item" href="{{route('patient-profile.show')}}">View Profile</a>
+                            @endcan
+                            <a class="dropdown-item" href="{{route('common.show-profile')}}">Edit Profile</a>
                             <a class="dropdown-item" href="{{route('common.show-password')}}">Change Password</a>
                         </div>
                     </div>

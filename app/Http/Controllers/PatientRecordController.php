@@ -72,7 +72,7 @@ class PatientRecordController extends Controller
      */
     public function edit(PatientRecord $patientRecord)
     {
-        $data = ['id' => $patientRecord->id, 'patient_id'=> $patientRecord->patient_id];
+        $data = $patientRecord->toArray();
         foreach (array_keys($this->fields) as $field){
             $data[$field] = old($field, $patientRecord->$field);
         }

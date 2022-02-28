@@ -13,10 +13,12 @@ class deleteConfirmationModal extends Component
      */
     public $modalTitle = '';
     public $modalDesc = '';
-    public function __construct($deletetitle, $deletedesc)
+    public $modalAction = '';
+    public function __construct($deletetitle, $deletedesc, $deleteformaction = '')
     {
         $this->modalTitle = $deletetitle;
         $this->modalDesc = $deletedesc;
+        $this->modalAction = $deleteformaction;
     }
 
     /**

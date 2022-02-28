@@ -100,4 +100,12 @@ class AppointmentController extends Controller
             'appointments_completed' => $appointments_completed,
             ]);
     }
+
+    public function markAsDone(Appointment $appointment)
+    {
+//        #TODO check if current doctor is the same?
+        $appointment['status']= 'DONE';
+        $appointment->save();
+        return redirect()->back()->with('success', 'Appointment completed.');
+    }
 }

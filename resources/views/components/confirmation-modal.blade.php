@@ -12,9 +12,27 @@
           {{ $modalDesc }}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Yes</button>
+          <button type="button" class="btn btn-secondary btn-no" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-primary btn-yes">Yes</button>
         </div>
       </div>
     </div>
   </div>
+@push('child-script')
+    <script>
+        function confirmModal(callback, title, message){
+            if(title) $('#approveModal #modalDesc').html(message)
+            if(message) $('#approveModal .modal-title').html(title)
+
+            $('#approveModal').modal().show()
+            $('#approveModal .btn-yes').off().on('click', function() {
+                // close window
+                $('#approveModal').modal('hide');
+
+                // and callback
+                callback();
+            });
+        }
+
+    </script>
+@endpush

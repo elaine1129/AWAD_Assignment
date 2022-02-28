@@ -7,6 +7,7 @@ use App\Http\Resources\PatientResource;
 use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
@@ -26,6 +27,12 @@ class PatientController extends Controller
     {
 //        $patientResource = new PatientResource($patient);
         return view('patient.profile')->with('patient',$patient);
+    }
+
+    public function showOwnProfile()
+    {
+//        $patientResource = new PatientResource($patient);
+        return view('patient.profile')->with('patient',Auth::user()->getUser());
     }
 
 }

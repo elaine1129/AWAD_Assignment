@@ -26,7 +26,7 @@ class UpdatePatientRecordRequest extends FormRequest
         return [
             "doctor_id"=>'exclude',
             "patient_id"=> 'exclude',
-            "appointment_id" => 'nullable|exists:App\Models\Appointment,id',
+            "appointment_id" => 'sometimes|nullable|exists:App\Models\Appointment,id',
             "symptoms" => 'required|string',
             "diagnosis" => 'required|string',
             "prescription" => 'required|string',
