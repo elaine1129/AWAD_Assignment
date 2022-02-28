@@ -43,13 +43,15 @@ class LoginController extends Controller
             'password' => 'required',
             'remember' => 'nullable',
         ]);
+
         $remember = isset($data['remember']);
         unset($data['remember']);
-        if (Auth::attempt($data, $remember)) {
+
+        if ( Auth::attempt($data, $remember)) {
             $request->session()->regenerate();
             return redirect('/')->with('success','Welcome '.Auth::user()->name.'. ');
         }
-        return back()->withErrors([
+        return back()->withInput($request->only(['email', 'remember']))->withErrors([
             'msg' => 'The provided credentials are not correct'
         ]);
     }
@@ -104,53 +106,85 @@ class LoginController extends Controller
     public function showProfile()
     {
         $user = Auth::user();
-        return view('doctor.edit-profile', array_merge($user->toArray(), $user->data));
+        return view('common.edit-profile', array_merge($user->toArray(), $user->data));
     }
 
-    public function editDoctorProfile(Request $request)
+    public function showEditPassword(Request $request)
     {
-        \Illuminate\Support\Facades\Gate::check('doctor-access');
+        return view('common.edit-password')->with('email', Auth::user()->email);
+    }
 
+    public function editPassword(Request $request)
+    {
         $data = $request->validate([
-            'old_password' => 'nullable',
+            'email'=>'exclude',
+            'old_password' => 'required',
             'password'=> [
-                'nullable',
+                'required',
                 'different:old_password',
                 'required_with:old_password',
                 'confirmed',
                 \Illuminate\Validation\Rules\Password::min(8)
             ],
-            'name'=> 'required',
-            'expertise' => 'string|nullable',
-            'image' => 'nullable|image',
         ]);
         $old_password = $data['old_password'];
         $new_password = $data['password'];
-        unset($data['password']);
-        unset($data['old_password']);
         $user = Auth::user();
 
         if($new_password) {
-            if (Hash::check($old_password, $user->password))
-                $user->password = bcrypt($data['password']);
+            if (Hash::check($old_password, $user->password)){
+                $user->password = Hash::make($data['password']);
+                $user->save();
+                return redirect()->back()->with('success', 'Password changed.');
+            }
             else
                 return redirect()->back()->withErrors('Old password is incorrect');
         }
+    }
 
-        if($request->file('image')){
-            $this->deleteImage($user->data['image_url']);
-            $imgPath = $this->uploadImage($request->file('image'));
-            $data['data']['image_url'] = $imgPath;
-            unset($data['image']);
+    public function editProfile(Request $request)
+    {
+        $user = Auth::user();
+
+        if($user->isDoctor()){
+            $data = $request->validate([
+                'name'=> 'required',
+                'expertise' => 'string|nullable',
+                'image' => 'nullable|image',
+            ]);
+
+            if($request->file('image')){
+                $this->deleteImage($user->data['image_url']);
+                $imgPath = $this->uploadImage($request->file('image'));
+                $data['data']['image_url'] = $imgPath;
+                unset($data['image']);
+            }else {
+                $data['data']['image_url'] = $user->image_url;
+            }
+
+            $data['data']['expertise'] = $data['expertise'];
+            $user->data = $data['data'];
+
+        }elseif ($user->isPatient()){
+            $data = $request->validate([
+                'email'=>'exclude',
+                'name'=> 'required',
+                'phone' => 'string|nullable',
+                'ic' => ['regex:/^(([[1-9]{2})(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01]))-([0-9]{2})-([0-9]{4})$/', 'required'],
+                'gender' => 'required',
+                'address' => 'required',
+            ]);
+
+            $user->data = $request->except('name');
         }else {
-            $data['data']['image_url'] = $user->image_url;
+            $data = $request->validate([
+                'name'=> 'required',
+            ]);
         }
 
-        $data['data']['expertise'] = $data['expertise'];
         $user->name = $data['name'];
-        $user->data = $data['data'];
         $user->save();
-        return redirect()->back()->with('success', 'Data updated');
+        return redirect()->back()->with('success', 'Profile updated');
     }
 
 

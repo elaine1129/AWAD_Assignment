@@ -30,6 +30,10 @@ Route::middleware('guest')->group(function (){
 Route::middleware('auth')->group(function (){
     Route::view('/home', 'common.home')->name('home');
     Route::get('/logout',[LoginController::class, 'logout'])->name('logout');
+    Route::get('/profile', [LoginController::class, 'showProfile'])->name('common.show-profile');
+    Route::put('/edit-profile',[LoginController::class, 'editProfile'])->name('common.edit-profile');
+    Route::get('/change-password',[LoginController::class, 'showEditPassword'])->name('common.show-password');
+    Route::put('/change-password',[LoginController::class, 'editPassword'])->name('common.edit-password');
 
 //  doctor and admin
     Route::get('/patients', [PatientController::class,'index'])->name('patient.index');
@@ -52,8 +56,7 @@ Route::middleware('auth')->group(function (){
 
 //    doctor
     Route::middleware('can:doctor-access')->group(function (){
-        Route::get('/profile', [LoginController::class, 'showProfile'])->name('profile');
-        Route::put('/edit-profile',[LoginController::class, 'editDoctorProfile'])->name('doctor.edit-profile');
+
     });
 });
 

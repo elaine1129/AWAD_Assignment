@@ -41,8 +41,20 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('profile')}}">{{\Illuminate\Support\Facades\Auth::user()->name}}
-                    </a>
+                    <div class="dropdown tw-mx-0 lg:tw-mx-5">
+                        <a class="nav-link dropdown-toggle" href="#" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @if(\Illuminate\Support\Facades\Auth::user()->isDoctor())
+                                <img class="tw-max-h-5 tw-rounded-full" src="{{\Illuminate\Support\Facades\Auth::user()['data']['image_url']}}" alt="">
+                            @else
+                                <span class="iconify tw-text-3xl tw-text-primary" data-icon="healthicons:ui-user-profile" data-inline="false"></span>
+                            @endif
+                            {{\Illuminate\Support\Facades\Auth::user()->name}}
+                        </a>
+                        <div class="dropdown-menu md:tw-mb-3 lg:tw-mb-0" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{{route('common.show-profile')}}">Profile</a>
+                            <a class="dropdown-item" href="{{route('common.show-password')}}">Change Password</a>
+                        </div>
+                    </div>
                 </li>
                 <a class="btn btn-danger my-2 my-sm-0 nav-item" href="{{route('logout')}}">Logout</a>
             </ul>

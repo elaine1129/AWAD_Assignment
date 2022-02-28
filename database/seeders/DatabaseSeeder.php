@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'DOCTOR',
             'data' => [
                 "expertise" => 'expertise',
-//                "image_url"=> 'https://i.pravatar.cc/150?u=doctor',
+                "image_url"=> 'https://i.pravatar.cc/150?u=doctor',
                 'name' => 'doctor',
                 'ic' => '123456789',
                 'email' => 'doctor email',

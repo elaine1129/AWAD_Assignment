@@ -1,9 +1,10 @@
 @extends('layouts.main-layout')
 
-@include('partials.errors')
-@include('partials.success')
+
 @section('body')
-    <form action="{{route('doctor.edit-profile')}}" method="POST" enctype="multipart/form-data">
+    @include('partials.errors')
+    @include('partials.success')
+    <form action="{{route('common.edit-password')}}" method="POST">
         @csrf
         @method('PUT')
         <div class="label">
@@ -11,13 +12,6 @@
         </div>
         <div class="input">
             <input disabled type="email" placeholder="Enter your email" name="email" required value="{{$email}}" >
-        </div>
-
-        <div class="label">
-            <label for="name"> Name: </label>
-        </div>
-        <div class="input">
-            <input type="text" placeholder="name" name="name" required value="{{$name}}">
         </div>
 
         <div class="label">
@@ -41,22 +35,8 @@
             <input type="password" placeholder="Minimum 6 characters" name="password_confirmation">
         </div>
 
-        <div class="label">
-            <label for="name"> Expertise: </label>
-        </div>
-        <div class="input">
-            <input type="text" placeholder="expertise" name="expertise" required value="{{$expertise ?? ''}}">
-        </div>
-
-        <div class="label">
-            <label for="name"> Profile image: </label>
-        </div>
-        <div class="input">
-            <img id="image-preview" src="{{$image_url ?? ''}}" alt="">
-            <input type="file" name="image">
-        </div>
-
         <button type="submit">Edit</button>
+        <button type="button" onclick="history.back()">Back</button>
     </form>
 @endsection
 @section('script')
