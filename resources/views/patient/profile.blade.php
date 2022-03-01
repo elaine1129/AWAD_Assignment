@@ -107,11 +107,15 @@
                             <td>{{ $patient_record['doctor']['name'] }}</td>
                             <td>
                                 <a class="btn btn-primary"
-                                   href="{{route('patient-record.edit', $patient_record)}}">Edit</a>
+                                   href="{{route('patient-record.edit', $patient_record)}}">
+                                    {{Auth::user()->canany(['update','delete'], $patient_record) ? 'Edit' : 'View'}}
+                                </a>
+                                @can('delete', $patient_record)
                                 <button type="button" class="btn btn-outline-danger"
                                         onclick="deletePatientRecord(`{{route('patient-record.destroy', $patient_record)}}`, {{$patient_record->id}})">
                                     Delete
                                 </button>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach
@@ -213,7 +217,7 @@
                                                 <span class="iconify" type="button" data-icon="fluent:delete-28-regular"
                                                       style="color: red;" data-toggle="modal"
                                                       data-target="#deleteModal"></span>
-                                                @can('doctor-access')
+                                                @can('mark-done', $appointment)
                                                     <button type="button" class="btn btn-success" onclick="markDone({{$appointment['id']}})">Mark As Done
                                                     </button>
                                                 @endcan

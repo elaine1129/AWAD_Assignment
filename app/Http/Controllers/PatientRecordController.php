@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 class PatientRecordController extends Controller
 {
     protected $fields = [
-        "appointment_id"=>'',
+        "appointment_id" => '',
         "symptoms" => '',
         "diagnosis" => '',
         "prescription" => ''
@@ -45,10 +45,10 @@ class PatientRecordController extends Controller
     public function create(Patient $patient)
     {
         $data = [];
-        foreach($this->fields as $field=>$default){
+        foreach ($this->fields as $field => $default) {
             $data[$field] = old($field, $default);
         }
-        return view('patient.record.create')->with($data)->with('patient',$patient);
+        return view('patient.record.create')->with($data)->with('patient', $patient);
     }
 
     /**
@@ -59,7 +59,7 @@ class PatientRecordController extends Controller
     public function store(StorePatientRecordRequest $request)
     {
         PatientRecord::create($request->validated());
-        return redirect(route('patient.show', $request->get('patient_id')))->with('success','A new record has been added.');
+        return redirect(route('patient.show', $request->get('patient_id')))->with('success', 'A new record has been added.');
     }
 
     public function show(PatientRecord $patientRecord)
@@ -73,10 +73,10 @@ class PatientRecordController extends Controller
     public function edit(PatientRecord $patientRecord)
     {
         $data = $patientRecord->toArray();
-        foreach (array_keys($this->fields) as $field){
+        foreach (array_keys($this->fields) as $field) {
             $data[$field] = old($field, $patientRecord->$field);
         }
-        return view('patient.record.edit', $data)->with('patient', Patient::find($patientRecord->patient_id));
+        return view('patient.record.edit', $data)->with('patient', $patientRecord->patient->getUser())->with('patientRecord', $patientRecord);
     }
 
     /**
@@ -85,7 +85,7 @@ class PatientRecordController extends Controller
     public function update(UpdatePatientRecordRequest $request, PatientRecord $patientRecord)
     {
         $patientRecord->update($request->validated());
-        return redirect(route('patient-record.edit', $patientRecord))->with('success','Changes saved.');
+        return redirect(route('patient-record.edit', $patientRecord))->with('success', 'Changes saved.');
     }
 
     /**
@@ -94,6 +94,6 @@ class PatientRecordController extends Controller
     public function destroy(PatientRecord $patientRecord)
     {
         $patientRecord->delete();
-        return redirect(route('patient.show', $patientRecord->patient_id))->with('success',"Patient Record has been deleted");
+        return redirect(route('patient.show', $patientRecord->patient_id))->with('success', "Patient Record has been deleted");
     }
 }

@@ -36,7 +36,6 @@
             </tr>
             </thead>
             <tbody>
-            @if(!is_null($patient['appointments']))
                 @foreach ($patient->getDoneAppointment() as $appointment)
                     <tr>
                         <td>{{ $appointment['schedule'] ? \Carbon\Carbon::parse($patient['date'])->format(config('clinic.date_format')) : '-' }}</td>
@@ -51,14 +50,14 @@
                         </td>
                     </tr>
             @endforeach
-            @endif
             <tbody>
         </table>
     </div>
-</div>
-
-@push('append-scripts')
-    <script>
-
-    </script>
+</div
+@push('child-script')
+<script>
+    if(editable === false){
+        _.take([...$('form')[0].elements],6).forEach(v => $(v).attr('disabled','true'))
+    }
+</script>
 @endpush

@@ -11,6 +11,12 @@
                     <div class="card">
                         <div class="card-header"><h3 class="card-title">New patient record for {{$patient['name']}}</h3></div>
                         <div class="card-body">
+                            <div class="tw-flex tw-justify-between tw-mb-3 tw-text-gray-500 tw-flex-column md:tw-flex-row">
+                                <div>
+                                    <div>DATE: </div>
+                                    <div class="tw-text-gray-800 tw-text-xl">{{\Carbon\Carbon::now()->format(config('clinic.date_time'))}}</div>
+                                </div>
+                            </div>
                             @include('partials.errors')
                             <form role="form" method="POST" action="{{route('patient-record.store')}}" id="patient-record-form">
                                 @csrf
@@ -21,7 +27,7 @@
                                 <div class="form-group row">
                                     <div class="col-md-7">
                                         <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-plus-circle"></i>  Create new patient record</button>
-                                        <button type="button" class="btn btn-light btn-lg">Cancel</button>
+                                        <button type="button" class="btn btn-light btn-lg" onclick="window.history.back()">Cancel</button>
                                     </div>
                                 </div>
 
@@ -36,12 +42,13 @@
 
 @section('script')
     <script>
+        const editable = true;
         $("#patient-record-form").submit (function () {
             $(this).find('select').remove();
             return true;
         });
         $(document).ready(function () {
-            $('#patient-appointments').DataTable();
+            let patientTable = $('#patient-appointments').DataTable();
         });
         $('input[type="checkbox"]').on('change', function() {
             $('input[name="' + this.name + '"]').not(this).prop('checked', false);
