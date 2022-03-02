@@ -37,7 +37,7 @@
                   <p class="card-text">Expertise: General & Internal Medicine</p>
                   <p class="card-text">M.B.B.S - University of xxx</p>
                   <p class="card-text">xxxx - University of xxx</p>
-                  <a href="#" class="btn btn-primary">Make appointment</a>
+                  <a href="/patient/create-appointment" class="btn btn-primary">Make appointment</a>
                 </div>
             </div>
           </div>

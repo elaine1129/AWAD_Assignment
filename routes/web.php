@@ -82,7 +82,11 @@ Route::prefix('/test')->group(function (){
 });
 
 Route::get('/patient/main', function () {
-    return view('patient-main');
+    return view('patient.patient-main');
+});
+
+Route::get('/patient/create-appointment', function () {
+    return view('patient.create-appointment');
 });
 
 

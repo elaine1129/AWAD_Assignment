@@ -2076,8 +2076,7 @@ __webpack_require__(/*! datatables.net-bs4 */ "./node_modules/.pnpm/datatables.n
 
 __webpack_require__(/*! @iconify/iconify */ "./node_modules/.pnpm/@iconify+iconify@2.1.2/node_modules/@iconify/iconify/dist/iconify.cjs");
 
-__webpack_require__(/*! jquery-ui */ "./node_modules/.pnpm/jquery-ui@1.13.1/node_modules/jquery-ui/ui/widget.js");
-
+window.$j = window.jQueryUi = __webpack_require__(/*! jquery-ui */ "./node_modules/.pnpm/jquery-ui@1.13.1/node_modules/jquery-ui/ui/widget.js");
 window.Popper = (__webpack_require__(/*! popper.js */ "./node_modules/.pnpm/popper.js@1.16.1/node_modules/popper.js/dist/esm/popper.js")["default"]);
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/.pnpm/jquery@3.6.0/node_modules/jquery/dist/jquery.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/.pnpm/lodash@4.17.21/node_modules/lodash/lodash.js");

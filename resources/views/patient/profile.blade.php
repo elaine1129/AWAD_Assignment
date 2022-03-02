@@ -14,7 +14,7 @@
         <h2>Patients profile:</h2>
         <hr>
         <div class="tw-grid tw-grid-cols-5" id="profile">
-            <div class="patient-profile-card tw-relative tw-mt-5 ">
+            <div class="patient-profile-card tw-relative tw-mt-5 tw-min-w-min">
                 <span
                     class="tw-absolute tw-text-indigo-800 tw--top-7 tw-bg-blue-200 tw-p-[0.8rem] tw-rounded-full tw-flex tw-items-center tw-justify-center">
                     <span class="iconify tw-text-4xl" data-icon="carbon:user-profile"></span>
@@ -111,10 +111,10 @@
                                     {{Auth::user()->canany(['update','delete'], $patient_record) ? 'Edit' : 'View'}}
                                 </a>
                                 @can('delete', $patient_record)
-                                <button type="button" class="btn btn-outline-danger"
-                                        onclick="deletePatientRecord(`{{route('patient-record.destroy', $patient_record)}}`, {{$patient_record->id}})">
-                                    Delete
-                                </button>
+                                    <button type="button" class="btn btn-outline-danger"
+                                            onclick="deletePatientRecord(`{{route('patient-record.destroy', $patient_record)}}`, {{$patient_record->id}})">
+                                        Delete
+                                    </button>
                                 @endcan
                             </td>
                         </tr>
@@ -218,7 +218,8 @@
                                                       style="color: red;" data-toggle="modal"
                                                       data-target="#deleteModal"></span>
                                                 @can('mark-done', $appointment)
-                                                    <button type="button" class="btn btn-success" onclick="markDone({{$appointment['id']}})">Mark As Done
+                                                    <button type="button" class="btn btn-success"
+                                                            onclick="markDone({{$appointment['id']}})">Mark As Done
                                                     </button>
                                                 @endcan
                                             </td>
@@ -258,10 +259,8 @@
             </div>
         </div>
     </div>
-
-    <x-deleteConfirmationModal :deletetitle="'Delete Patient Record'"
-                               :deletedesc="''"></x-deleteConfirmationModal>
-    <x-confirmationModal :title="''" :desc="''"/>
+    @include('partials.modal.confirm')
+    @include('partials.modal.delete')
 @endsection
 @section('script')
     <script>
@@ -282,7 +281,6 @@
                 });
             }).draw();
 
-            // $('#patient-appointments').DataTable();
             $('#completed-appointment').DataTable();
             $('#upcoming-appointment').DataTable();
             $('#pending-appointment').DataTable();
@@ -302,18 +300,25 @@
             return false;
         });
 
-        function markDone(id){
+        function markDone(id) {
             let path = '/doctor/mark-appointment-done/' + id
-            confirmModal(()=> {
-                window.location.href = path;
-            }, 'Mark as done', 'Are you sure to mark this appointment as completed?')
+
+            confirmModal({
+                title: 'Mark as done',
+                message: 'Are you sure to mark this appointment as completed?',
+                callback: () => {
+                    window.location.href = path;
+                }
+            })
         }
 
         function deletePatientRecord(path, id) {
             let index = $(`#${id} .index`).html()
-            $('#modalDesc').html("Are you sure to delete record <span class='tw-text-highlight-blue'>" + index + "</span> ?")
-            $('#modalDeleteForm').attr('action', path)
-            $('#deleteModal').modal().show()
+            deleteModal({
+                title: 'Delete patient record',
+                message: "Are you sure to delete record <span class='tw-text-highlight-blue'>" + index + "</span> ?",
+                action: path
+            })
         }
     </script>
 @stop

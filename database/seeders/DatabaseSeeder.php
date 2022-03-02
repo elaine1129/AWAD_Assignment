@@ -6,6 +6,8 @@ use App\Models\Appointment;
 use App\Models\PatientRecord;
 use App\Models\Schedule;
 use App\Models\User;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
@@ -32,7 +34,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'DOCTOR',
             'data' => [
                 "expertise" => 'expertise',
-                "image_url"=> 'https://i.pravatar.cc/150?u=doctor',
+                "image_url" => 'https://i.pravatar.cc/150?u=doctor',
                 'name' => 'doctor',
                 'ic' => '123456789',
                 'email' => 'doctor email',
@@ -63,7 +65,21 @@ class DatabaseSeeder extends Seeder
                 "address" => 'Jalan 123',
             ]
         ]);
-        Schedule::factory(10)->create();
+//        Schedule::factory(10)->create();
+        $now = Carbon::today();
+        $endDate = $now->clone()->addDays(10)->endOfDay();
+        collect(CarbonPeriod::create($now, $endDate)->toArray())->map(function ($eachDate) {
+            User::all()->each(function ($user) use ($eachDate) {
+                if ($user->isDoctor()) {
+                    Schedule::create([
+                        'date' => $eachDate,
+                        'doctor_id' => $user->id,
+                        'slots' => [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    ]);
+                }
+            });
+        });
+
         Appointment::factory(20)->create();
         PatientRecord::factory(15)->create();
     }

@@ -43,6 +43,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('patient.index')}}">Patients</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Schedules</a>
+                    </li>
                 @endcan
             </ul>
             <ul class="navbar-nav">

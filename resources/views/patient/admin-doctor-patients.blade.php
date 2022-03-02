@@ -41,8 +41,7 @@
         </div>
     </div>
 
-    <x-deleteConfirmationModal :deletetitle="'Delete Patient'"
-                               :deletedesc="''"></x-deleteConfirmationModal>
+    @include('partials.modal.delete')
 @endsection
 @section('script')
     <script>
@@ -52,9 +51,11 @@
         });
 
         function deletePatient(path, name) {
-            $('#modalDesc').html("Are you sure to delete patient <span class='tw-text-highlight-blue'>" + name + "</span> ?")
-            $('#modalDeleteForm').attr('action', path)
-            $('#deleteModal').modal().show()
+            deleteModal({
+                title: 'Delete patient record',
+                message: "Are you sure to delete patient <span class='tw-text-highlight-blue'>" + name + "</span> ?",
+                action: path
+            })
         }
 
     </script>

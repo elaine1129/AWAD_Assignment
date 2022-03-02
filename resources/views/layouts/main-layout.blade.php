@@ -12,7 +12,7 @@
 </head>
 <body class="tw-font-primary">
 @yield('navbar',\View::make('partials.navbar'))
-{{--@include('partials.navbar')--}}
+@include('partials.modal.alert')
 @yield('body')
 
 </body>
