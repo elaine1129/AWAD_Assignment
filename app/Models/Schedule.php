@@ -20,6 +20,11 @@ class Schedule extends Model
         '3:00pm','3:30pm','4:00pm','4:30pm'
     ];
 
+    public static function checkIfScheduleExists($date, $doctor_id)
+    {
+        return Schedule::whereDoctorId($doctor_id)->whereDate('date', '==', '2022-03-12')->first();
+    }
+
     public function getTime($timeIndex)
     {
         return self::TIMESLOT_STRINGS[$timeIndex];

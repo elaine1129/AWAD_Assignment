@@ -42,15 +42,19 @@ Route::middleware('auth')->group(function (){
 
 
 //  doctor and admin
-    Route::get('/patients', [PatientController::class,'index'])->name('patient.index');
-    Route::delete('/patients/{patient}', [PatientController::class,'destroy'])->name('patient.delete');
-    Route::get('/patients/{patient}', [PatientController::class,'show'])->name('patient.show');
+    Route::middleware('can:doctor-or-admin')->group(function(){
+        Route::get('/patients', [PatientController::class,'index'])->name('patient.index');
+        Route::delete('/patients/{patient}', [PatientController::class,'destroy'])->name('patient.delete');
+        Route::get('/patients/{patient}', [PatientController::class,'show'])->name('patient.show');
 
-    Route::get('/patients-record/create/{patient}',[PatientRecordController::class,'create'])->name('patient-record.create');
-    Route::post('/patients-record',[PatientRecordController::class,'store'])->name('patient-record.store');
-    Route::get('/patients-record/{patient_record}/edit',[PatientRecordController::class,'edit'])->name('patient-record.edit');
-    Route::put('/patients-record/{patient_record}',[PatientRecordController::class,'update'])->name('patient-record.update');
-    Route::delete('/patients-record/{patient_record}',[PatientRecordController::class,'destroy'])->name('patient-record.destroy');
+        Route::get('/patients-record/create/{patient}',[PatientRecordController::class,'create'])->name('patient-record.create');
+        Route::post('/patients-record',[PatientRecordController::class,'store'])->name('patient-record.store');
+        Route::get('/patients-record/{patient_record}/edit',[PatientRecordController::class,'edit'])->name('patient-record.edit');
+        Route::put('/patients-record/{patient_record}',[PatientRecordController::class,'update'])->name('patient-record.update');
+        Route::delete('/patients-record/{patient_record}',[PatientRecordController::class,'destroy'])->name('patient-record.destroy');
+
+        Route::get('/mark-appointment-done/{appointment}', [AppointmentController::class, 'markAsDone'])->name('appointment.mark-done')->can('mark-done,appointment');
+    });
 
 //    admin
     Route::middleware('can:admin-access')->prefix('admin')->group(function (){
@@ -58,6 +62,9 @@ Route::middleware('auth')->group(function (){
         Route::post('/register-doctor',[LoginController::class, 'registerDoctor'])->name('register-doctor');
         Route::view('/doctors','doctor.admin-doctors')->name('doctor.index');
         Route::get('/appointment', [AppointmentController::class,'showAll'])->name('admin-appointment');
+
+        Route::get('/schedules/create', [\App\Http\Controllers\ScheduleController::class,'showCreateForm'])->name('schedule.create');
+        Route::post('/schedules', [\App\Http\Controllers\ScheduleController::class,'store'])->name('schedule.store');
     });
 
 
@@ -66,7 +73,6 @@ Route::middleware('auth')->group(function (){
         Route::get('/appointment', function () {
             return view('doctor/doctor-appointment');
         })->name('doctor-appointment');
-        Route::get('/mark-appointment-done/{appointment}', [AppointmentController::class, 'markAsDone'])->name('appointment.mark-done');
     });
 });
 

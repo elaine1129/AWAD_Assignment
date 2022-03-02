@@ -104,8 +104,9 @@ class AppointmentController extends Controller
     public function markAsDone(Appointment $appointment)
     {
 //        #TODO check if current doctor is the same?
+//        $this->authorize('mark-done',$appointment);
         $appointment['status']= 'DONE';
         $appointment->save();
-        return redirect()->back()->with('success', 'Appointment completed.');
+        return redirect()->back()->with('message', 'Appointment mark as completed.');
     }
 }

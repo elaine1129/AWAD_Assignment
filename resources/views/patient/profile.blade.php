@@ -301,7 +301,7 @@
         });
 
         function markDone(id) {
-            let path = '/doctor/mark-appointment-done/' + id
+            let path = '/mark-appointment-done/' + id
 
             confirmModal({
                 title: 'Mark as done',

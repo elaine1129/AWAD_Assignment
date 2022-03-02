@@ -35,6 +35,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('doctor.index')}}">Doctors</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('schedule.create')}}">Schedules</a>
+                    </li>
                 @endcan
                 @can('doctor-access')
                     <li class="nav-item">

@@ -45,5 +45,9 @@ class AuthServiceProvider extends ServiceProvider
             return Auth::user()->isDoctor();
         });
 
+        Gate::define('doctor-or-admin', function(){
+            return Auth::user()->isDoctor() || Auth::user()->isAdmin();
+        });
+
     }
 }
