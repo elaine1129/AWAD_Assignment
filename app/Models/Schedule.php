@@ -22,7 +22,51 @@ class Schedule extends Model
 
     public static function checkIfScheduleExists($date, $doctor_id)
     {
-        return Schedule::whereDoctorId($doctor_id)->whereDate('date', '==', '2022-03-12')->first();
+        return Schedule::whereDoctorId($doctor_id)->whereDate('date', '==', $date)->first();
+    }
+
+    public function isSlotAvailable($index)
+    {
+        $availableTimeslot = $this->getAvailableTimeslot();
+        if(is_numeric($index))
+            return $availableTimeslot[$index] == 1;
+
+        $index = array_search($index, self::TIMESLOT_STRINGS);
+        return $availableTimeslot[$index] == 1;
+    }
+
+    public function isPendingAppointmentExist($slotIndex)
+    {
+        $pendingAppointment = $this->getPendingAppointments($slotIndex);
+        if($pendingAppointment->isEmpty())
+            return false;
+        return true;
+    }
+
+    public function getPendingAppointments($slotIndex)
+    {
+        return Appointment::whereScheduleId($this->id)->whereStatus('PENDING')->whereTimeslot($slotIndex)->get();
+    }
+
+
+    // timeslots without pending appointment and also approved appointment
+    public function getAvailableTimeslot()
+    {
+        $availSlots = [];
+        foreach ($this->slots as $index=>$slot){
+            if($slot == 0)
+                array_push($availSlots, 0);
+            elseif ($this->isPendingAppointmentExist($index))
+                array_push($availSlots, 0);
+            else
+                array_push($availSlots, 1);
+        }
+        return $availSlots;
+    }
+
+    public function getDateAttribute($date)
+    {
+        return Carbon::parse($date)->format(config('clinic.date_format'));
     }
 
     public function getTime($timeIndex)

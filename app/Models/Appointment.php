@@ -10,6 +10,12 @@ class Appointment extends Model
 {
     use HasFactory;
     protected $appends = ['time','date'];
+    protected $guarded = ['id'];
+
+    public function getTimeslotIndex()
+    {
+        return $this->timeslot;
+    }
 
     public function getTimeAttribute()
     {

@@ -38,7 +38,13 @@ Route::middleware('auth')->group(function (){
 //    patient
     Route::middleware('can:patient-access')->group(function (){
         Route::get('/patients-profile', [PatientController::class,'showOwnProfile'])->name('patient-profile.show');
+        Route::get('/patient/home',[PatientController::class, 'home'])->name('patient.home');
+        Route::get('/appointment/create/{doctor}', [AppointmentController::class, 'patientCreate'])->name('appointment.create');
+        Route::post('/appointment/create', [AppointmentController::class, 'patientStore'])->name('appointment.store');
+        Route::get('/appointment/{appointment}/edit', [AppointmentController::class, 'patientEdit'])->name('appointment.edit');
+        Route::put('/appointment/{appointment}', [AppointmentController::class, 'patientUpdate'])->name('appointment.update');
     });
+    Route::post('/schedule/view-timeslot/{schedule}',[\App\Http\Controllers\ScheduleController::class, 'viewTimeslot'])->name('schedule.view-timeslot');
 
 
 //  doctor and admin
@@ -87,9 +93,6 @@ Route::prefix('/test')->group(function (){
     Route::get('/pr/{patient_id}', [PatientRecordController::class, 'index']);
 });
 
-Route::get('/patient/main', function () {
-    return view('patient.patient-main');
-});
 
 Route::get('/patient/create-appointment', function () {
     return view('patient.create-appointment');

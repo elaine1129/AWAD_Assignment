@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminDoctor;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PatientResource;
+use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -33,6 +34,12 @@ class PatientController extends Controller
     {
 //        $patientResource = new PatientResource($patient);
         return view('patient.profile')->with('patient',Auth::user()->getUser());
+    }
+
+
+    public function home()
+    {
+        return view('patient.patient-main')->with('patient',Auth::user()->getUser())->with('doctors',Doctor::whereRole('DOCTOR')->get());
     }
 
 }

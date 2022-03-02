@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PatientAppointmentRequest;
 use App\Http\Resources\AppointmentResource;
+use App\Models\Doctor;
+use App\Models\Schedule;
 use App\Models\User;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
@@ -24,22 +28,28 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function patientCreate(Doctor $doctor)
     {
-
+        return view('patient.appointment.create')->with('doctor',$doctor);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function patientStore(PatientAppointmentRequest $request)
     {
-        $data = $request->validate([
-            ''
-        ]);
+        $data = $request->validated();
+        // check again for available timeslots
+        if(Schedule::find($data['schedule_id'])->isSlotAvailable($data['timeslot'])){
+            $data['patient_id']= Auth::user()->id;
+            $data['status'] = 'PENDING';
+            Appointment::create($data);
+            return redirect(route('patient.home'))->with('alert', [
+                'message'=>'Appointment created, pending for approval.',
+                'type'=>'success',
+            ]);
+        }
+        return redirect()->back()->withInput($request->input())->with('alert', [
+             'message'=>'Failed to create appointment, the selected time has been booked, please select another time.',
+             'type'=>'warning',
+         ]);
     }
 
     /**
@@ -53,27 +63,44 @@ class AppointmentController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function patientEdit(Request $request, Appointment $appointment)
     {
-        //
+        if($appointment->status != 'PENDING')
+            return redirect()->back()->with('alert', [
+                'message'=>'Approved appointment cannot be changed, please contact admin.',
+                'type'=>'warning',
+            ]);
+        return view('patient.appointment.edit', $appointment)->with('doctor',$appointment->doctor->getUser())->with('appointment', $appointment);
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function patientUpdate(PatientAppointmentRequest $request, Appointment $appointment)
     {
-        //
+        $data = $request->validated();
+
+        if($appointment->status != 'PENDING'){
+            return redirect()->back()->with('alert', [
+                'message'=>'Failed to update appointment.',
+                'type'=>'warning',
+            ]);
+        }
+
+        // check again for available timeslots
+        $schedule = Schedule::find($data['schedule_id']);
+        if($schedule->isSlotAvailable($data['timeslot']) || $data['timeslot'] == $appointment->getTimeslotIndex()){
+            $data['patient_id']= Auth::user()->id;
+            $appointment->update($data);
+            return redirect()->back()->with('alert', [
+                'message'=>'Appointment updated.',
+                'type'=>'success',
+            ]);
+        }
+        return redirect()->back()->withInput($request->input())->with('alert', [
+            'message'=>'Failed to create appointment, the selected time has been booked, please select another time.',
+            'type'=>'warning',
+        ]);
     }
 
     /**
@@ -103,8 +130,7 @@ class AppointmentController extends Controller
 
     public function markAsDone(Appointment $appointment)
     {
-//        #TODO check if current doctor is the same?
-//        $this->authorize('mark-done',$appointment);
+        $this->authorize('mark-done',$appointment);
         $appointment['status']= 'DONE';
         $appointment->save();
         return redirect()->back()->with('message', 'Appointment mark as completed.');

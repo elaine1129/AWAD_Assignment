@@ -25,6 +25,23 @@
       </div>
     {{-- section2-OurDoctors: --}}
     <h2>Our Doctors: </h2>
+    <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-x-8 tw-gap-y-3">
+        @foreach($doctors as $doctor)
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <div class="tw-w-32">
+                                <img class="tw-w-full rounded-circle" src="{{$doctor->data['image_url']}}" alt="user profile">
+                            </div>
+                            <h5 class="card-title">{{$doctor->name}}</h5>
+                            <p class="card-text">Expertise: {{$doctor->data['expertise']}}</p>
+                            <a href="{{route('appointment.create', $doctor)}}" class="btn btn-primary">Make appointment</a>
+                        </div>
+                    </div>
+                </div>
+        @endforeach
+    </div>
+
     <div class="row">
         <div class="col-md-6 col-lg-4">
           <div class="card">

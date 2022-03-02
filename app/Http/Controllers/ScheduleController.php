@@ -66,6 +66,11 @@ class ScheduleController extends Controller
         //
     }
 
+    public function viewTimeslot(Request $request, Schedule $schedule)
+    {
+        return $schedule->getAvailableTimeslot();
+    }
+
     /**
      * Store a newly created resource in storage.
      *

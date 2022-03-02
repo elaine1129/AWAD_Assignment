@@ -41,6 +41,7 @@ class Doctor extends User
             return $this->schedules->filter(function ($sc){
                 return $sc->available;
             });
+
 //            $schedules = $this->schedules;
 //            $data = [];
 //            foreach ($schedules as $i=>$schedule){

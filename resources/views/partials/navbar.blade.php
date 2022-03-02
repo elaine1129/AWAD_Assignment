@@ -16,7 +16,7 @@
                 </li>
                 @can('patient-access')
                     <li class="nav-item">
-                        <a class="nav-link" href="/patient/main">Appointments</a>
+                        <a class="nav-link" href="{{route('patient.home')}}">Appointments</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About Us</a>

@@ -74,7 +74,7 @@ class DatabaseSeeder extends Seeder
                     Schedule::create([
                         'date' => $eachDate,
                         'doctor_id' => $user->id,
-                        'slots' => [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                        'slots' => [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
                     ]);
                 }
             });
