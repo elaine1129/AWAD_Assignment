@@ -9,9 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     use HasFactory;
-    protected $appends = ['time','date'];
+    protected $appends = ['time', 'date', 'datecalendar'];
     protected $guarded = ['id'];
 
+    // attributes
     public function getTimeslotIndex()
     {
         return $this->timeslot;
@@ -19,12 +20,18 @@ class Appointment extends Model
 
     public function getTimeAttribute()
     {
-        return ($this->schedule_id != null && $this->timeslot != null && $this->schedule != null) ? Carbon::parse($this->schedule->getTime($this->timeslot))->format(config('clinic.time_format')) : null;
+        // return ($this->schedule_id != null && $this->timeslot != null && $this->schedule != null) ? Carbon::parse($this->schedule->getTime($this->timeslot))->format(config('clinic.time_format')) : '-';
+        return Carbon::parse($this->schedule->getTime($this->timeslot))->format(config('clinic.time_format')) ?? '-';
     }
 
     public function getDateAttribute()
     {
-        return $this->schedule_id ? Carbon::parse(Schedule::find($this->schedule_id)->date)->format(config('clinic.date_format')) : null;
+        return $this->schedule_id ? Carbon::createFromFormat('d/m/Y', Schedule::find($this->schedule_id)->date)->format(config('clinic.date_format')) : '-';
+    }
+
+    public function getDatecalendarAttribute()
+    {
+        return $this->schedule_id ? Carbon::createFromFormat('d/m/Y', Schedule::find($this->schedule_id)->date)->format('Y-m-d') : '-';
     }
 
     public function patient()
@@ -39,7 +46,7 @@ class Appointment extends Model
 
     public function schedule()
     {
-        return $this->hasOne(Schedule::class,  'id','schedule_id');
+        return $this->hasOne(Schedule::class,  'id', 'schedule_id');
     }
 
     public function patient_records()
