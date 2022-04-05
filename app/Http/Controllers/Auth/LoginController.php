@@ -83,8 +83,6 @@ class LoginController extends Controller
     {
         $accountInfo = $request->safe()->only(array_keys(self::$commonFields));
         $doctorData = $request->safe()->except(array_keys(self::$commonFields));
-//        $tempPassword = \Illuminate\Support\Str::random();
-        // #TODO send temporary password to doctor email
         $tempPassword = 'password';
         if($request->file('image')){
             $imgPath = $this->uploadImage($request->file('image'));

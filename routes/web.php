@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PatientRecordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppointmentController;
+use App\Models\Doctor;
+use App\Http\Controllers\Admin\DoctorController as AdminDoctorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,16 +67,25 @@ Route::middleware('auth')->group(function () {
     //    admin
     Route::middleware('can:admin-access')->prefix('admin')->group(function () {
         Route::view('/register-doctor', 'admin.register-doctor');
-        Route::post('/register-doctor', [LoginController::class, 'registerDoctor'])->name('register-doctor');
-        Route::view('/doctors', 'doctor.admin-doctors')->name('doctor.index');
+
         Route::get('/appointment', [AppointmentController::class, 'showAdmin'])->name('admin-appointment');
+
+
+        Route::get('/mark-appointment-approved/{appointment}', [AppointmentController::class, 'markAsApproved'])->name('appointment.mark-approved');
+        Route::delete('/appointment/{appointment}', [AppointmentController::class, 'destroy'])->name('appointment.delete');
+        Route::post('/update-appointment/{appointment}', [\App\Http\Controllers\AppointmentController::class, 'editAppointment'])->name('appointment.update');
+
+        Route::post('/register-doctor', [LoginController::class, 'registerDoctor'])->name('register-doctor');
+
+        // doctor list
+        Route::get('/doctors', [AdminDoctorController::class, 'index'])->name('doctor.index');
+        Route::get('/doctors/{doctor}/edit', [AdminDoctorController::class, 'edit'])->name('doctor.edit');
+        Route::put('/doctors/{doctor}/edit', [AdminDoctorController::class, 'update']);
+        Route::delete('/doctors/{doctor}', [AdminDoctorController::class, 'delete']);
+
 
         Route::get('/schedules/create', [\App\Http\Controllers\ScheduleController::class, 'showCreateForm'])->name('schedule.create');
         Route::post('/schedules', [\App\Http\Controllers\ScheduleController::class, 'store'])->name('schedule.store');
-        Route::get('/mark-appointment-approved/{appointment}', [AppointmentController::class, 'markAsApproved'])->name('appointment.mark-approved');
-        Route::delete('/appointment/{appointment}', [AppointmentController::class, 'destroy'])->name('appointment.delete');
-        Route::post('/schedules', [\App\Http\Controllers\ScheduleController::class, 'store'])->name('schedule.store');
-        Route::post('/update-appointment/{appointment}', [\App\Http\Controllers\AppointmentController::class, 'editAppointment'])->name('appointment.update');
     });
 
 

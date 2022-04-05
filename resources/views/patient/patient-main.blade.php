@@ -31,7 +31,7 @@
                     <div class="card-body">
                         <div class="d-flex flex-column justify-content-center align-items-center">
                             <div class="tw-w-32">
-                                <img class="tw-w-full rounded-circle" src="{{$doctor->data['image_url']}}" alt="user profile">
+                                <img class="tw-w-full rounded-circle" src="{{$doctor->imageUrl()}}" alt="user profile">
                             </div>
                             <h5 class="card-title">{{$doctor->name}}</h5>
                             <p class="card-text">Expertise: {{$doctor->data['expertise']}}</p>

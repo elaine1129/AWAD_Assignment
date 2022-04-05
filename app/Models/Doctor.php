@@ -20,8 +20,15 @@ class Doctor extends User
         return $user;
     }
 
-    //attributes START
+    public function imageUrl()
+    {
+        $imgUrl = $this->data['image_url'];
+        if(substr($imgUrl, 0, 7) == '/public' || substr($imgUrl, 0, 6) == 'public')
+            return url($imgUrl);
+        return $imgUrl;
+    }
 
+    //attributes START
     public function schedules()
     {
         return $this->hasMany(Schedule::class, 'doctor_id', 'id');

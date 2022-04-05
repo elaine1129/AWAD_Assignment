@@ -1,31 +1,19 @@
 @extends('layouts.main-layout')
 @section('body')
-<div class="tw-px-10 sm:tw-px-20 lg:tw-px-40">
-    <h1>Admin Dashboard</h1>
-</div>
+<header>
+    <div class="card-body p-3">
+        <h1>Admin Dashboard</h1>
+    </div>
+</header>
 
 <div class="row">
     <div class="col-lg-11 mx-auto">
         <div class="card border-0">
             <div class="card-body p-3">
-                <h2>Doctors </h2>
-                <br>
-                {{-- <div class="input-group col-md-0">
-                    <form class="d-flex">
-                        <input class="form-control mr-0" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-primary" type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>
-                        <button class="btn btn-outline-primary tw-float-right" type="button" data-toggle="tooltip" data-placement="top" title="Add">
-                            <i class="fa fa-plus"></i>
-                        </button>
-                    </form>
-                </div> --}}
                 <div class="row">
                     <div class="col-4">
-                        <form class="d-flex">
-                            <input class="form-control mr-0" type="search" placeholder="Search" aria-label="Search">
-                        </form>
+                        <h2>Doctors List</h2>
+                        <br>
                     </div>
                     <div class="col-7"></div>
                     <div class="col">
@@ -33,92 +21,44 @@
                             <i class="fa fa-plus"></i>
                         </a>
                     </div>
-
-
                 </div>
 
                 <!-- Responsive table -->
                 <div class="table-responsive">
-                    <table class="table m-0">
+                    <table class="table m-0" id="doctors-list">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Expertise</th>
-                                <th scope="col">Remarks</th>
-                                <th scope="col"></th>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Expertise</th>
+                                <th data-sortable="false">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Dr. Ulrike Herx</td>
-                                <td>General & Internal Medicine</td>
-                                <td>lalalalalalalalalalalalalalalalalala</td>
+                            @foreach ($doctors as $doctor)
+                              <tr id={{ $doctor['id'] }}>
+                                <td class="index"></td>
+                                <td>{{ $doctor['name'] }}</td>
+                                <td>{{ $doctor['email'] }}</td>
+                                <td>{{ $doctor['data']['expertise'] }}</td>
                                 <td>
                                     <!-- Call to action buttons -->
                                     <ul class="list-inline m-0">
                                         <li class="list-inline-item">
-                                            <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                                            <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <a class="tw-text-white hover:tw-text-gray-300" href={{ "doctors/".$doctor['id']."/edit" }}><i class="fa fa-edit"></i></a>
+                                            </button>
                                         </li>
                                         <li class="list-inline-item">
-                                            <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                                            <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onclick="deleteDoctor(this)">
+                                                <i class="hover:tw-text-gray-300 fa fa-trash"></i>
+                                            </button>
                                         </li>
                                     </ul>
                                 </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Dr. Ulrike Herx</td>
-                                <td>General & Internal Medicine</td>
-                                <td></td>
-                                <td>
-                                    <!-- Call to action buttons -->
-                                    <ul class="list-inline m-0">
-                                        <li class="list-inline-item">
-                                            <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Dr. Ulrike Herx</td>
-                                <td>General & Internal Medicine</td>
-                                <td></td>
-                                <td>
-                                    <!-- Call to action buttons -->
-                                    <ul class="list-inline m-0">
-                                        <li class="list-inline-item">
-                                            <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Dr. Ulrike Herx</td>
-                                <td>General & Internal Medicine</td>
-                                <td></td>
-                                <td>
-                                    <!-- Call to action buttons -->
-                                    <ul class="list-inline m-0">
-                                        <li class="list-inline-item">
-                                            <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-
+                            </tr>   
+                            @endforeach
                         </tbody>
                     </table>
 
@@ -129,5 +69,36 @@
 </div>
 
 @endsection
+@include('partials.modal.delete')
 @section('script')
+<script>
+     $(document).ready(function () {
+            let doctorTable = $('#doctors-list').DataTable({
+                "columnDefs": [{
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": 0
+                }],
+                "order": [[1, 'asc']]
+            });
+
+            doctorTable.on('order.dt search.dt', function () {
+                doctorTable.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+        });
+
+        function deleteDoctor(row){
+            let id = $(row).parent().parent().parent().parent().attr('id')
+            let name = $(row).parent().parent().parent().parent().children('td').eq(1).html();
+            let path = '/admin/doctors/' + id;
+             deleteModal({
+                title: 'Delete doctor',
+                message: "Are you sure to delete doctor <span class='tw-text-highlight-blue'>" + name + "</span> ?",
+                action: path
+            })
+        }
+
+</script>
 @stop
