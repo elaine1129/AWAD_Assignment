@@ -188,6 +188,14 @@ class AppointmentController extends Controller
             ->where('date', '=', $req->apptDate)
             ->where('doctor_id', '=', $appointment->doctor_id)
             ->first();
+
+        if ($data == null) {
+            return redirect()->back()->withInput($req->input())->with('alert', [
+                'message' => 'Selected time not available, please select another time.',
+                'type' => 'warning',
+            ]);
+        }
+
         $schedule_id = $data->id;
         $oldSchedule = $appointment->schedule;
 

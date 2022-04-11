@@ -44,7 +44,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/appointment/create/{doctor}', [AppointmentController::class, 'patientCreate'])->name('appointment.create');
         Route::post('/appointment/create', [AppointmentController::class, 'patientStore'])->name('appointment.store');
         Route::get('/appointment/{appointment}/edit', [AppointmentController::class, 'patientEdit'])->name('appointment.edit');
-        Route::put('/appointment/{appointment}', [AppointmentController::class, 'patientUpdate'])->name('appointment.update');
+        Route::post('/patient/appointment/{appointment}', [AppointmentController::class, 'editAppointment'])->name('appointment.update');
+        Route::delete('/patient/appointment/{appointment}/delete', [AppointmentController::class, 'destroy'])->name('appointment.delete');
     });
     Route::post('/schedule/view-timeslot/{schedule}', [\App\Http\Controllers\ScheduleController::class, 'viewTimeslot'])->name('schedule.view-timeslot');
 

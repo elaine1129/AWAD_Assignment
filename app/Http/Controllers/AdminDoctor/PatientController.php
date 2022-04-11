@@ -7,6 +7,7 @@ use App\Http\Resources\PatientResource;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\User;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,25 +22,40 @@ class PatientController extends Controller
     public function destroy(Patient $patient)
     {
         $patient->delete();
-       return redirect()->back()->with('success',"$patient->name has been delete.");
+        return redirect()->back()->with('success', "$patient->name has been delete.");
     }
 
     public function show(Patient $patient)
     {
-//        $patientResource = new PatientResource($patient);
-        return view('patient.profile')->with('patient',$patient);
+        //        $patientResource = new PatientResource($patient);
+        return view('patient.profile')->with('patient', $patient);
     }
 
     public function showOwnProfile()
     {
-//        $patientResource = new PatientResource($patient);
-        return view('patient.profile')->with('patient',Auth::user()->getUser());
+        //        $patientResource = new PatientResource($patient);
+        return view('patient.profile')->with('patient', Auth::user()->getUser());
     }
 
 
     public function home()
     {
-        return view('patient.patient-main')->with('patient',Auth::user()->getUser())->with('doctors',Doctor::whereRole('DOCTOR')->get());
-    }
 
+        // $appointments_upcoming =  Appointment::where('status', 'APPROVED')->where('patient_id', $patient['id'])->get();
+        // $appointments_pending =  Appointment::where('status', 'PENDING')->where('patient_id', $patient['id'])->get();
+        // $appointments_completed =  Appointment::where('status', 'DONE')->where('patient_id', $patient['id'])->get();
+
+        $patient = Auth::user()->getUser();
+        $appointments_upcoming =  $patient->getApprovedAppointment();
+        $appointments_pending =  $patient->getPendingAppointment();
+        $appointments_completed =  $patient->getDoneAppointment();
+        return view(
+            'patient.patient-main',
+            [
+                'appointments_upcoming' => $appointments_upcoming,
+                'appointments_pending' => $appointments_pending,
+                'appointments_completed' => $appointments_completed,
+            ]
+        )->with('patient', $patient)->with('doctors', Doctor::whereRole('DOCTOR')->get());
+    }
 }
