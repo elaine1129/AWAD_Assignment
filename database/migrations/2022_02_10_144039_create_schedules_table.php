@@ -18,7 +18,7 @@ class CreateSchedulesTable extends Migration
             $table->timestamps();
             $table->date('date');
             $table->json('slots');
-            $table->foreignIdFor(\App\Models\User::class, 'doctor_id');
+            $table->foreignIdFor(\App\Models\User::class, 'doctor_id')->constrained()->cascadeOnDelete();
         });
     }
 

@@ -16,8 +16,8 @@ class CreatePatientRecordsTable extends Migration
         Schema::create('patient_records', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignIdFor(\App\Models\User::class, 'doctor_id');
-            $table->foreignIdFor(\App\Models\User::class, 'patient_id');
+            $table->foreignIdFor(\App\Models\User::class, 'doctor_id')->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\User::class, 'patient_id')->constrained()->cascadeOnDelete();
             $table->foreignIdFor(\App\Models\Appointment::class, 'appointment_id')->nullable();
             $table->longText('symptoms');
             $table->longText('diagnosis');
