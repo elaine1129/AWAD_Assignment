@@ -30,7 +30,12 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::view('/home', 'common.home')->name('home');
+    Route::get('/home', function(){
+        $user = \Illuminate\Support\Facades\Auth::user();
+        if($user->isAdmin()) return redirect(\route('admin-appointment'));
+        if($user->isDoctor()) return redirect(\route('doctor-appointment'));
+        if($user->isPatient()) return redirect(\route('patient.home'));
+    })->name('home');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/profile', [LoginController::class, 'showProfile'])->name('common.show-profile');
     Route::put('/edit-profile', [LoginController::class, 'editProfile'])->name('common.edit-profile');
