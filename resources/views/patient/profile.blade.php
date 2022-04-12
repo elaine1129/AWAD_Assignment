@@ -127,10 +127,7 @@
             <div class="container tw-pb-10" id="appointment">
                 <h2>Appointment booked:</h2>
                 @can('patient-access')
-                    <div class="text-right py-2">
-                        <a class="btn btn-success" href="/"><i class="fa fa-plus-circle"></i> Create new Appointment
-                        </a>
-                    </div>
+                    
                 @endcan
                 <ul class="nav nav-tabs" id="appontmentTab" role="tablist" style="cursor:pointer;">
                     <li class="nav-item" role="presentation">
