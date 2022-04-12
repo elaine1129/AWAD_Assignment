@@ -1,10 +1,5 @@
 @extends('layouts.main-layout')
 @section('body')
-<header>
-    <div class="card-body p-3">
-        <h1>Admin Dashboard</h1>
-    </div>
-</header>
 
 <div class="row">
     <div class="col-lg-11 mx-auto">
