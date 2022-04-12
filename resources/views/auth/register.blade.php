@@ -36,14 +36,14 @@
                                 <label for="password">Password*:</label>
                             </div>
                             <div class="input">
-                                <input style="width:35%" type="password" placeholder="Minimum 6 characters" name="password" required value="{{old('password')}}">
+                                <input style="width:35%" type="password" placeholder="Minimum 8 characters" name="password" required value="{{old('password')}}">
                             </div>
                 
                             <div class="label">
                                 <label for="password">Password confirmation*:</label>
                             </div>
                             <div class="input">
-                                <input style="width:35%" type="password" placeholder="Minimum 6 characters" name="password_confirmation" required value="{{old('password_confirmation')}}">
+                                <input style="width:35%" type="password" placeholder="Minimum 8 characters" name="password_confirmation" required value="{{old('password_confirmation')}}">
                             </div>
                 
                             <div class="label">
