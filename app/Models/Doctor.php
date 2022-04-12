@@ -16,7 +16,7 @@ class Doctor extends User
     public function resolveRouteBindingQuery($query, $value, $field = null)
     {
         $user = parent::resolveRouteBindingQuery($query, $value, $field);
-        if(!$user->first()->getModel()->isDoctor()) abort('404');
+        if(!$user->exists() || !$user->first()->getModel()->isDoctor()) abort('404');
         return $user;
     }
 

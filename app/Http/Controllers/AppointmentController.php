@@ -158,7 +158,10 @@ class AppointmentController extends Controller
         $this->authorize('mark-done', $appointment);
         $appointment['status'] = 'DONE';
         $appointment->save();
-        return redirect()->back()->with('message', 'Appointment mark as completed.');
+        return redirect()->back()->with('alert', [
+            'message' => 'Appointment mark as done.',
+            'type' => 'success'
+        ]);
     }
 
     public function markAsApproved(Appointment $appointment)
