@@ -41,10 +41,6 @@ class PatientController extends Controller
     public function home()
     {
 
-        // $appointments_upcoming =  Appointment::where('status', 'APPROVED')->where('patient_id', $patient['id'])->get();
-        // $appointments_pending =  Appointment::where('status', 'PENDING')->where('patient_id', $patient['id'])->get();
-        // $appointments_completed =  Appointment::where('status', 'DONE')->where('patient_id', $patient['id'])->get();
-
         $patient = Auth::user()->getUser();
         $appointments_upcoming =  $patient->getApprovedAppointment();
         $appointments_pending =  $patient->getPendingAppointment();
