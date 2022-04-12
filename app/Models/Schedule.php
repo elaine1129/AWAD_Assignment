@@ -36,7 +36,7 @@ class Schedule extends Model
 
     public static function checkIfScheduleExists($date, $doctor_id)
     {
-        return Schedule::whereDoctorId($doctor_id)->whereDate('date', '==', $date)->first();
+        return Schedule::whereDoctorId($doctor_id)->whereDate('date', $date)->exists();
     }
 
     public function isSlotAvailable($index)

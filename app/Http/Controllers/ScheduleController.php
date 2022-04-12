@@ -26,15 +26,16 @@ class ScheduleController extends Controller
         ]);
         $startDate = Carbon::parse($data['from']);
         $endDate = Carbon::parse($data['to']);
+        $createdSchedules = [];
         collect(CarbonPeriod::create($startDate, $endDate)->toArray())->map(function ($eachDate) use ($data) {
             User::find($data['doctor_ids'])->each(function ($user) use ($eachDate) {
                 if ($user->isDoctor()) {
-                    if(Schedule::checkIfScheduleExists($eachDate, $user->id))
-                    Schedule::create([
-                        'date' => $eachDate,
-                        'doctor_id' => $user->id,
-                        'slots' => [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-                    ]);
+                    if(!Schedule::checkIfScheduleExists($eachDate, $user->id))
+                        Schedule::create([
+                            'date' => $eachDate,
+                            'doctor_id' => $user->id,
+                            'slots' => [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                        ]);
                 }
             });
         });
