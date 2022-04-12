@@ -13,7 +13,7 @@
             <ul class="navbar-nav mr-auto">
                 @can('patient-access')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('patient.home')}}">Appointments</a>
+                        <a class="nav-link" href="{{route('patient.home')}}">Home</a>
                     </li>
                 @endauth
                 @can('admin-access')
