@@ -119,7 +119,9 @@
                 </div>
         @endforeach
     </div>
-      
+     <div class="tw-my-20">
+        <p>Contact admin:<a href="mailto:admin@cm.com" >admin@cm.com</a> </p>
+     </div> 
 </body>
 @include('partials.modal.confirm')
 @include('partials.modal.delete')
