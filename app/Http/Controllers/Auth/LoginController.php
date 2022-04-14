@@ -157,7 +157,7 @@ class LoginController extends Controller
                 $data['data']['image_url'] = $imgPath;
                 unset($data['image']);
             }else {
-                $data['data']['image_url'] = $user->image_url;
+                $data['data']['image_url'] = $user->data['image_url'];
             }
 
             $data['data']['expertise'] = $data['expertise'];
