@@ -12,17 +12,17 @@ class ScheduleController extends Controller
 {
     protected $fields = [
         'from' => '',
-        'to' =>'',
-        'doctor_ids'=> [],
+        'to' => '',
+        'doctor_ids' => [],
     ];
 
     private function generateSchedule(Request $request)
     {
         $data = $request->validate([
-            'from'=>'date|required|after:yesterday',
-            'to'=>'required|date|after_or_equal:from',
-            'doctor_ids'=>'required|array',
-            'doctor_ids.*'=>'exists:App\Models\Doctor,id'
+            'from' => 'date|required|after:yesterday',
+            'to' => 'required|date|after_or_equal:from',
+            'doctor_ids' => 'required|array',
+            'doctor_ids.*' => 'exists:App\Models\Doctor,id'
         ]);
         $startDate = Carbon::parse($data['from']);
         $endDate = Carbon::parse($data['to']);
@@ -30,11 +30,13 @@ class ScheduleController extends Controller
         collect(CarbonPeriod::create($startDate, $endDate)->toArray())->map(function ($eachDate) use ($data) {
             User::find($data['doctor_ids'])->each(function ($user) use ($eachDate) {
                 if ($user->isDoctor()) {
-                    if(!Schedule::checkIfScheduleExists($eachDate, $user->id))
+                    if (!Schedule::checkIfScheduleExists($eachDate, $user->id))
                         Schedule::create([
                             'date' => $eachDate,
                             'doctor_id' => $user->id,
-                            'slots' => [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                            'slots' => [
+                                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+                            ],
                         ]);
                 }
             });
