@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\File;
 
 class DoctorController extends Controller
 {
-    
+
     public function edit(Doctor $doctor)
     {
         return view('common.edit-profile', array_merge($doctor->toArray(), $doctor->data));
@@ -37,7 +37,7 @@ class DoctorController extends Controller
                 $data['data']['image_url'] = $imgPath;
                 unset($data['image']);
             }else {
-                $data['data']['image_url'] = $doctor->image_url;
+                $data['data']['image_url'] = $doctor->data['image_url'];
             }
 
             $data['data']['expertise'] = $data['expertise'];
